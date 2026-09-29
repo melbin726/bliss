@@ -1,0 +1,342 @@
+/* ==========================================================================
+   BLISS SPA - LUXURY SANCTUARY (BTM 1ST STAGE, BENGALURU)
+   Tailwind CSS Companion Stylesheet: Animations, Lenis & Interactive States
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* High-Contrast Luxury Color Palette (WCAG AAA Compliant) */
+  --bg-darkest: #050807;
+  --bg-primary: #0a110e;
+  --bg-secondary: #0f1a15;
+  --bg-surface: #14221c;
+  --bg-surface-hover: #1b2f27;
+  
+  --gold-primary: #e6c35c;
+  --gold-light: #fff2cc;
+  --gold-dark: #b89128;
+  --gold-gradient: linear-gradient(135deg, #fff3d1 0%, #e6c35c 50%, #b89128 100%);
+  --gold-glow: rgba(230, 195, 92, 0.35);
+  
+  --emerald-accent: #2e5344;
+  --emerald-light: #52836f;
+  
+  --text-pure: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;   /* High-contrast crisp silver */
+  --text-muted: #cbd5e1;       /* Readable secondary slate */
+  
+  --border-subtle: rgba(230, 195, 92, 0.32);
+  --border-light: rgba(255, 255, 255, 0.14);
+  --border-focus: rgba(230, 195, 92, 0.75);
+  
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --shadow-gold: 0 8px 30px rgba(230, 195, 92, 0.25);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+/* Base Document Setup */
+html {
+  font-family: var(--font-sans);
+  color-scheme: dark;
+  background-color: var(--bg-darkest);
+  color: var(--text-primary);
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-darkest);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle Ambient Grain Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(rgba(230, 195, 92, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+/* Body bottom padding for mobile floating island navigation bar */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Custom Hide Scrollbars */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   LENIS MOMENTUM SMOOTH SCROLL (Apple & Awwwards Grade Fluid Inertia)
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   CINEMATIC SLOW & SMOOTH CONTENT SCROLL REVEAL ENGINE
+   ========================================================================== */
+.scroll-reveal {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(36px);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.scroll-reveal.is-revealed,
+.scroll-reveal.is-inview {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+}
+
+.scroll-reveal.delay-1 { transition-delay: 0.08s; }
+.scroll-reveal.delay-2 { transition-delay: 0.16s; }
+.scroll-reveal.delay-3 { transition-delay: 0.24s; }
+.scroll-reveal.delay-4 { transition-delay: 0.32s; }
+.scroll-reveal.delay-5 { transition-delay: 0.40s; }
+.scroll-reveal.delay-6 { transition-delay: 0.48s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   BREATHING ORB KEYFRAME ANIMATION (Psychological Decompression)
+   ========================================================================== */
+@keyframes breathCircleAnimation {
+  0% {
+    transform: scale(0.85);
+    box-shadow: 0 0 20px rgba(230, 195, 92, 0.2);
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 50px rgba(230, 195, 92, 0.6);
+  }
+  100% {
+    transform: scale(0.85);
+    box-shadow: 0 0 20px rgba(230, 195, 92, 0.2);
+  }
+}
+
+.breathing-ring {
+  animation: breathCircleAnimation 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ==========================================================================
+   ZEN SINGING BOWL SOUNDWAVES ANIMATION
+   ========================================================================== */
+.zen-audio-btn.playing .sound-waves span:nth-child(1) {
+  animation: wavePulse 1s ease-in-out infinite 0.1s;
+}
+.zen-audio-btn.playing .sound-waves span:nth-child(2) {
+  animation: wavePulse 1s ease-in-out infinite 0.25s;
+}
+.zen-audio-btn.playing .sound-waves span:nth-child(3) {
+  animation: wavePulse 1s ease-in-out infinite 0.4s;
+}
+
+@keyframes wavePulse {
+  0%, 100% { height: 4px; }
+  50% { height: 14px; }
+}
+
+/* ==========================================================================
+   INTERACTIVE JS STATE HOOKS (Modals, Drawers, Tabs & FAQ)
+   ========================================================================== */
+/* Header Scrolled State */
+.site-header.scrolled {
+  background-color: rgba(5, 8, 7, 0.96);
+  border-color: rgba(230, 195, 92, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Desktop Floating Capsule Active Link */
+.nav-capsule .nav-link.active {
+  background: rgba(230, 195, 92, 0.2);
+  color: #e6c35c;
+  font-weight: 600;
+}
+
+/* Mobile Drawer Open & Backdrop */
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 45;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-drawer-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Filter Tab Active */
+.tab-btn.active {
+  background: #e6c35c !important;
+  color: #050807 !important;
+  border-color: #e6c35c !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 18px rgba(230, 195, 92, 0.4) !important;
+}
+
+/* Package Calculator Active Option Card */
+.custom-option-label.active {
+  border-color: #e6c35c !important;
+  background: rgba(230, 195, 92, 0.12) !important;
+  box-shadow: 0 0 20px rgba(230, 195, 92, 0.2) !important;
+}
+
+/* Symptom Card Active */
+.symptom-card.active {
+  border-color: #e6c35c !important;
+  background: rgba(230, 195, 92, 0.14) !important;
+  box-shadow: 0 0 24px rgba(230, 195, 92, 0.25) !important;
+}
+
+.symptom-dots .dot.active {
+  background: #e6c35c !important;
+  width: 24px !important;
+}
+
+/* FAQ Accordion Toggle */
+.faq-item .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 400px;
+  opacity: 1;
+  padding-top: 12px;
+  margin-top: 12px;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+  color: #e6c35c;
+}
+
+/* Modal Open & Card Transition */
+.modal-backdrop.active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.modal-backdrop.active .modal-card {
+  transform: scale(1) translateY(0) !important;
+}
+
+
+/* Back to Top Visible */
+.back-to-top-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition: all 0.3s ease;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Social Proof Live Toast */
+.social-proof-toast {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-proof-toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Toast Notification Pill */
+.toast {
+  background: rgba(20, 34, 28, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(230, 195, 92, 0.4);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
