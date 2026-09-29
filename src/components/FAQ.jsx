@@ -34,9 +34,10 @@ export default function FAQ({ onOpenBooking }) {
                 className="bg-[#131d17] border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 shadow-sm"
               >
                 <button
+                  type="button"
                   onClick={() => toggleAccordion(item.id)}
                   aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left focus:outline-none"
+                  className="w-full min-h-[50px] flex items-center justify-between p-3.5 xs:p-4 sm:p-5 text-left focus:outline-none active:bg-white/5 transition-colors"
                 >
                   <span className="font-serif text-sm sm:text-base font-semibold text-white pr-3">
                     {item.question}
@@ -50,7 +51,7 @@ export default function FAQ({ onOpenBooking }) {
                   </div>
                 </button>
                 {isOpen && (
-                  <div className="px-4 sm:px-5 pb-4 pt-0 text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-white/5">
+                  <div className="px-3.5 xs:px-4 sm:px-5 pb-4 pt-0 text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-white/5">
                     {item.answer}
                   </div>
                 )}
@@ -72,7 +73,7 @@ export default function FAQ({ onOpenBooking }) {
           <div className="flex items-center gap-2.5 shrink-0 w-full sm:w-auto">
             <a
               href="tel:09945264342"
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-xs transition-all"
+              className="flex-1 sm:flex-initial min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-xs active:scale-95 transition-all"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#e6c35c]" />
               <span>Call Reception</span>
@@ -81,7 +82,7 @@ export default function FAQ({ onOpenBooking }) {
               href="https://wa.me/919945264342?text=Hello%20Bliss%20Spa,%20I%20have%20a%20question%20regarding%20treatments"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366]/30 border border-[#25D366]/40 text-[#4ade80] font-semibold text-xs transition-all"
+              className="flex-1 sm:flex-initial min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#25D366]/20 hover:bg-[#25D366]/30 border border-[#25D366]/40 text-[#4ade80] font-semibold text-xs active:scale-95 transition-all"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>WhatsApp</span>

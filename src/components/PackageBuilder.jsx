@@ -93,19 +93,25 @@ export default function PackageBuilder({ onOpenBooking }) {
                 <span className="w-5 h-5 rounded-full bg-[#e6c35c] text-slate-950 text-xs flex items-center justify-center font-bold">2</span>
                 <span>Choose Duration</span>
               </h4>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-1.5 xs:gap-2">
                 {durationOptions.map((d) => (
-                  <div
+                  <button
                     key={d.label}
+                    type="button"
                     onClick={() => { setDurationPrice(d.extra); setDurationName(d.label); }}
-                    className={`p-2.5 sm:p-3 rounded-xl border text-center cursor-pointer transition ${
+                    className={`p-2 sm:p-3 min-h-[48px] rounded-xl border text-center cursor-pointer transition active:scale-95 flex flex-col items-center justify-center ${
                       durationPrice === d.extra 
-                        ? 'border-[#e6c35c] bg-[#e6c35c]/15 font-bold text-white shadow-sm' 
+                        ? 'border-[#e6c35c] bg-[#e6c35c]/15 font-bold text-white shadow-sm ring-1 ring-[#e6c35c]' 
                         : 'border-white/10 bg-[#0a110e]/70 text-slate-300 hover:border-[#e6c35c]/40'
                     }`}
                   >
-                    <span className="text-xs sm:text-sm font-medium">{d.label}</span>
-                  </div>
+                    <span className="text-[11px] xs:text-xs sm:text-sm font-semibold leading-tight">{d.label.split(' ')[0]} {d.label.split(' ')[1]}</span>
+                    {d.extra > 0 ? (
+                      <span className="text-[9px] xs:text-[10px] text-[#e6c35c] font-medium leading-none mt-0.5">+₹{d.extra}</span>
+                    ) : (
+                      <span className="text-[9px] xs:text-[10px] text-slate-400 font-medium leading-none mt-0.5">Base</span>
+                    )}
+                  </button>
                 ))}
               </div>
             </div>
@@ -123,7 +129,7 @@ export default function PackageBuilder({ onOpenBooking }) {
                     <div
                       key={addon.id}
                       onClick={() => toggleAddon(addon)}
-                      className={`p-2.5 sm:p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${
+                      className={`p-2.5 sm:p-3 min-h-[44px] rounded-xl border cursor-pointer transition active:scale-98 flex items-center justify-between ${
                         isChecked 
                           ? 'border-[#e6c35c] bg-[#e6c35c]/15 shadow-sm' 
                           : 'border-white/10 bg-[#0a110e]/70 hover:border-[#e6c35c]/40'
@@ -134,7 +140,7 @@ export default function PackageBuilder({ onOpenBooking }) {
                           type="checkbox" 
                           checked={isChecked} 
                           onChange={() => {}} 
-                          className="accent-[#e6c35c] w-3.5 h-3.5 pointer-events-none" 
+                          className="accent-[#e6c35c] w-4 h-4 pointer-events-none shrink-0" 
                         />
                         <span className="text-xs text-white truncate">{addon.name}</span>
                       </div>
@@ -181,8 +187,9 @@ export default function PackageBuilder({ onOpenBooking }) {
             </div>
 
             <button
+              type="button"
               onClick={() => onOpenBooking(`Custom Package: ${baseName} (${durationName})`, `₹${grandTotal}`)}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs sm:text-sm shadow-md active:scale-98 transition flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full min-h-[46px] py-3 px-4 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs sm:text-sm shadow-md active:scale-98 transition flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Confirm Custom Package</span>
               <ArrowRight className="w-3.5 h-3.5" />

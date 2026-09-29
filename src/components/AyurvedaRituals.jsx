@@ -40,9 +40,9 @@ export default function AyurvedaRituals({ onOpenBooking }) {
               At Bliss Spa BTM Layout, our certified Ayurvedic practitioners use warm classical herbal oils and synchronized strokes over 107 Marma energy nodes for deep physiological restoration.
             </p>
 
-            {/* 4 Highlights (2x2 Grid on Mobile) */}
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-6">
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2">
+            {/* 4 Highlights (1-col on ultra-compact, 2x2 on xs+) */}
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6">
+              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <Leaf className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Abhyanga</h4>
@@ -50,7 +50,7 @@ export default function AyurvedaRituals({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2">
+              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <Leaf className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Marma Healing</h4>
@@ -58,7 +58,7 @@ export default function AyurvedaRituals({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2">
+              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <Leaf className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Natural Detox</h4>
@@ -66,7 +66,7 @@ export default function AyurvedaRituals({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2">
+              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <Leaf className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Shirodhara</h4>
@@ -77,8 +77,9 @@ export default function AyurvedaRituals({ onOpenBooking }) {
 
             <div className="flex items-center gap-3">
               <button
+                type="button"
                 onClick={() => onOpenBooking('Ayurveda Spa Massage', '₹2,799')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md active:scale-98 transition"
+                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md active:scale-98 transition"
               >
                 <span>Book Ayurveda Spa (₹2,799)</span>
                 <ArrowRight className="w-3.5 h-3.5" />

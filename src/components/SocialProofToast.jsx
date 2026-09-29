@@ -60,11 +60,13 @@ export default function SocialProofToast({ onBookTherapy }) {
       </div>
 
       <button
+        type="button"
         onClick={() => setIsDismissed(true)}
-        className="w-5 h-5 rounded-full hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition-colors"
+        className="w-7 h-7 rounded-full hover:bg-white/10 active:scale-90 text-slate-400 hover:text-white flex items-center justify-center transition-all shrink-0"
         title="Dismiss"
+        aria-label="Dismiss notification"
       >
-        <X className="w-3 h-3" />
+        <X className="w-3.5 h-3.5" />
       </button>
     </div>
   );

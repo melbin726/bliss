@@ -50,8 +50,13 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
   useEffect(() => {
     if (isOpen) {
       loadBookings();
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') onClose();
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -94,47 +99,55 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 xs:p-2 sm:p-4 overflow-y-auto bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
-        className="relative w-full max-w-4xl bg-[#0d1612] border border-[#e6c35c]/30 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-8"
+        className="relative w-full max-w-4xl bg-[#0d1612] border-t sm:border border-[#e6c35c]/35 rounded-t-3xl sm:rounded-3xl p-4.5 xs:p-6 sm:p-8 shadow-2xl overflow-hidden max-h-[92dvh] sm:max-h-[90vh] my-auto flex flex-col pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:pb-8"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Mobile Pull Indicator Pill */}
+        <div className="sm:hidden w-10 h-1 rounded-full bg-white/20 mx-auto mb-3" />
+
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/10 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 sm:pb-6 border-b border-white/10 gap-3 sm:gap-4 shrink-0">
           <div>
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
               <Shield className="w-3.5 h-3.5" />
               Staff Internal Portal
             </span>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+            <h3 className="font-serif text-xl sm:text-3xl font-bold text-white leading-tight">
               Front Desk Appointment Log
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
               Live guest bookings for Bliss Spa &amp; Massage • BTM 1st Stage
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 self-start sm:self-auto">
             <button
+              type="button"
               onClick={() => setShowAddForm(!showAddForm)}
-              className="py-2 px-3.5 rounded-xl bg-[#e6c35c] hover:bg-[#d4af37] text-black font-semibold text-xs flex items-center gap-1.5 transition-colors"
+              className="py-2.5 px-3.5 min-h-[40px] rounded-xl bg-[#e6c35c] hover:bg-[#d4af37] text-black font-semibold text-xs flex items-center gap-1.5 transition-colors active:scale-95"
             >
               <Plus className="w-4 h-4" />
               <span>Add Walk-In</span>
             </button>
 
             <button
+              type="button"
               onClick={loadBookings}
-              className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+              className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors active:scale-95"
               title="Refresh Records"
+              aria-label="Refresh records"
             >
               <RefreshCw className="w-4 h-4" />
             </button>
 
             <button
+              type="button"
               onClick={onClose}
-              className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+              className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors active:scale-95"
               title="Close"
+              aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
@@ -143,7 +156,7 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
 
         {/* Walk-in Entry Form */}
         {showAddForm && (
-          <form onSubmit={handleAddWalkin} className="my-6 p-4 rounded-2xl bg-[#14211a] border border-[#e6c35c]/40 animate-fade-in">
+          <form onSubmit={handleAddWalkin} className="my-4 sm:my-6 p-4 rounded-2xl bg-[#14211a] border border-[#e6c35c]/40 animate-fade-in shrink-0">
             <h4 className="font-serif text-sm font-bold text-white mb-3 flex items-center gap-2">
               <span>Quick Register Walk-in Guest</span>
             </h4>
@@ -154,7 +167,7 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
                 value={walkinName}
                 onChange={(e) => setWalkinName(e.target.value)}
                 required
-                className="bg-[#0e1713] border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#e6c35c]"
+                className="w-full min-h-[44px] bg-[#0e1713] border border-white/15 rounded-xl px-3 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#e6c35c]"
               />
               <input
                 type="tel"
@@ -162,12 +175,13 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
                 value={walkinPhone}
                 onChange={(e) => setWalkinPhone(e.target.value)}
                 required
-                className="bg-[#0e1713] border border-white/15 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#e6c35c]"
+                inputMode="tel"
+                className="w-full min-h-[44px] bg-[#0e1713] border border-white/15 rounded-xl px-3 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#e6c35c]"
               />
               <select
                 value={walkinService}
                 onChange={(e) => setWalkinService(e.target.value)}
-                className="bg-[#0e1713] border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#e6c35c]"
+                className="w-full min-h-[44px] bg-[#0e1713] border border-white/15 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-[#e6c35c]"
               >
                 <option value="Swedish Body Therapy">Swedish Body Therapy</option>
                 <option value="Aromatherapy Calming Ritual">Aromatherapy Calming Ritual</option>
@@ -181,13 +195,13 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="px-3 py-1.5 rounded-lg bg-white/10 text-xs text-slate-300 hover:text-white"
+                className="min-h-[40px] px-4 py-2 rounded-xl bg-white/10 text-xs text-slate-300 hover:text-white active:scale-95"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-1.5 rounded-lg bg-[#e6c35c] text-black font-semibold text-xs hover:bg-[#d4af37]"
+                className="min-h-[40px] px-4 py-2 rounded-xl bg-[#e6c35c] text-black font-semibold text-xs hover:bg-[#d4af37] active:scale-95"
               >
                 Save Walk-In
               </button>
@@ -196,7 +210,7 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
         )}
 
         {/* Bookings List */}
-        <div className="mt-6 max-h-[60vh] overflow-y-auto pr-1 space-y-3">
+        <div className="mt-4 sm:mt-6 overflow-y-auto pr-1 space-y-3 flex-1 scrollbar-none">
           {bookings.length === 0 ? (
             <div className="text-center py-12 text-slate-400 text-sm">
               No appointments in the queue. Bookings made on the website will instantly appear here.
@@ -205,14 +219,14 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
             bookings.map((b) => (
               <div
                 key={b.id}
-                className="p-4 rounded-2xl bg-[#121c16] border border-white/10 hover:border-white/20 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
+                className="p-3.5 sm:p-4 rounded-2xl bg-[#121c16] border border-white/10 hover:border-white/20 transition-all flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4"
               >
-                <div className="space-y-1">
+                <div className="space-y-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-mono text-xs text-[#e6c35c] font-bold bg-[#e6c35c]/10 px-2 py-0.5 rounded-md border border-[#e6c35c]/20">
                       {b.id}
                     </span>
-                    <span className="font-serif text-base font-bold text-white">
+                    <span className="font-serif text-base font-bold text-white truncate">
                       {b.name}
                     </span>
                     <span
@@ -228,7 +242,7 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
                     </span>
                   </div>
 
-                  <div className="text-xs text-slate-300 flex items-center gap-3 flex-wrap">
+                  <div className="text-xs text-slate-300 flex items-center gap-2 sm:gap-3 flex-wrap">
                     <span className="text-white font-medium">{b.service}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
@@ -249,28 +263,33 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
                   )}
                 </div>
 
-                {/* Actions */}
+                {/* Actions (Touch Target 40x40px min) */}
                 <div className="flex items-center gap-2 shrink-0 self-end md:self-center">
                   <a
                     href={`tel:${b.phone}`}
-                    className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+                    className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 active:scale-90 text-slate-300 hover:text-white transition-all flex items-center justify-center"
                     title={`Call ${b.phone}`}
+                    aria-label={`Call ${b.name}`}
                   >
                     <Phone className="w-4 h-4 text-emerald-400" />
                   </a>
 
                   <button
+                    type="button"
                     onClick={() => handleUpdateStatus(b.id, 'Completed')}
-                    className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+                    className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 active:scale-90 text-slate-300 hover:text-white transition-all flex items-center justify-center"
                     title="Mark Completed"
+                    aria-label="Mark Completed"
                   >
                     <Check className="w-4 h-4 text-emerald-400" />
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => handleDelete(b.id)}
-                    className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-rose-400 transition-colors"
+                    className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 active:scale-90 text-slate-300 hover:text-rose-400 transition-all flex items-center justify-center"
                     title="Remove Record"
+                    aria-label="Remove Record"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

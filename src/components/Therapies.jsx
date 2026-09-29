@@ -33,13 +33,14 @@ export default function Therapies({ onOpenBooking }) {
           </p>
         </div>
 
-        {/* Filter Tabs (Horizontal Scroll on Mobile) */}
-        <div className="flex items-center sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none px-1 mb-6 sm:mb-10 snap-x">
+        {/* Filter Tabs (Horizontal Edge-Bleed Scroll on Mobile) */}
+        <div className="-mx-3.5 px-3.5 sm:mx-0 sm:px-1 flex items-center sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none mb-6 sm:mb-10 snap-x">
           {tabs.map((tab) => (
             <button
               key={tab.value}
+              type="button"
               onClick={() => setFilter(tab.value)}
-              className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-semibold whitespace-nowrap transition cursor-pointer snap-start shrink-0 ${
+              className={`px-3.5 sm:px-5 py-2 min-h-[38px] rounded-full text-xs font-semibold whitespace-nowrap transition cursor-pointer snap-start shrink-0 active:scale-95 ${
                 filter === tab.value
                   ? 'bg-[#e6c35c] text-slate-950 shadow-[0_2px_12px_rgba(230,195,92,0.35)]'
                   : 'bg-[#14221c] border border-white/15 text-slate-200 hover:text-white'
@@ -100,8 +101,9 @@ export default function Therapies({ onOpenBooking }) {
                 </div>
 
                 <button
+                  type="button"
                   onClick={() => onOpenBooking(therapy.title, therapy.price)}
-                  className="w-full py-2.5 sm:py-3 px-4 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs shadow-md hover:brightness-105 active:scale-98 transition flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="w-full min-h-[44px] py-2.5 sm:py-3 px-4 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs shadow-md hover:brightness-105 active:scale-98 transition flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <span>Book Appointment</span>
                   <ArrowRight className="w-3.5 h-3.5" />
