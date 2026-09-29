@@ -23,7 +23,7 @@ export default function Gallery({ onOpenLightbox }) {
             <div
               key={item.id}
               onClick={() => onOpenLightbox(item)}
-              className="relative h-44 sm:h-72 rounded-xl sm:rounded-3xl overflow-hidden shadow-md border border-white/10 group cursor-pointer"
+              className="relative h-40 xs:h-48 sm:h-72 rounded-xl sm:rounded-3xl overflow-hidden shadow-md border border-white/10 group cursor-pointer active:scale-95 transition-transform"
             >
               <img 
                 src={item.image} 
@@ -31,9 +31,9 @@ export default function Gallery({ onOpenLightbox }) {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                 loading="lazy" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-3 sm:p-5 flex flex-col justify-end">
-                <h5 className="font-serif text-xs sm:text-lg font-bold text-white mb-0.5 line-clamp-1">{item.title}</h5>
-                <p className="text-[10px] sm:text-xs text-slate-200 line-clamp-2">{item.caption}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-2.5 xs:p-3 sm:p-5 flex flex-col justify-end">
+                <h5 className="font-serif text-xs xs:text-sm sm:text-lg font-bold text-white mb-0.5 line-clamp-1">{item.title}</h5>
+                <p className="text-[9px] xs:text-[10px] sm:text-xs text-slate-200 line-clamp-2">{item.caption}</p>
               </div>
             </div>
           ))}

@@ -12,7 +12,7 @@ import {
 
 export default function Footer({ onOpenAdmin, onOpenBooking }) {
   return (
-    <footer className="bg-[#060a08] border-t border-white/10 pt-10 sm:pt-16 pb-24 md:pb-16 px-3.5 sm:px-6 lg:px-8 text-slate-300">
+    <footer className="bg-[#060a08] border-t border-white/10 pt-10 sm:pt-16 pb-32 sm:pb-28 md:pb-16 px-3.5 sm:px-6 lg:px-8 text-slate-300">
       <div className="container max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10">
           

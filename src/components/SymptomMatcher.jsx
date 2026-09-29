@@ -53,8 +53,9 @@ export default function SymptomMatcher({ onOpenBooking, isZenPlaying, onToggleZe
 
           <div className="flex justify-center gap-2 sm:gap-3 flex-wrap mt-3">
             <button
+              type="button"
               onClick={onToggleZen}
-              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer border ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 min-h-[40px] rounded-full text-xs font-semibold transition active:scale-95 cursor-pointer border ${
                 isZenPlaying 
                   ? 'bg-[#e6c35c] text-slate-950 border-[#e6c35c]' 
                   : 'bg-[#e6c35c]/10 hover:bg-[#e6c35c]/20 border-[#e6c35c] text-[#fff2cc]'
@@ -64,9 +65,9 @@ export default function SymptomMatcher({ onOpenBooking, isZenPlaying, onToggleZe
             </button>
             <a 
               href="tel:09945264342" 
-              className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/20 text-slate-200 px-3.5 py-1.5 rounded-full text-xs font-semibold transition"
+              className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/20 text-slate-200 px-4 py-2 min-h-[40px] rounded-full text-xs font-semibold transition active:scale-95"
             >
-              <Phone className="w-3 h-3 text-[#e6c35c]" />
+              <Phone className="w-3.5 h-3.5 text-[#e6c35c]" />
               <span>Reception Help</span>
             </a>
           </div>
@@ -91,8 +92,8 @@ export default function SymptomMatcher({ onOpenBooking, isZenPlaying, onToggleZe
           <ArrowRight className="w-3 h-3" />
         </div>
 
-        {/* Symptom Cards Grid (Responsive Swipe on Mobile) */}
-        <div className="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 overflow-x-auto pb-3 md:pb-0 scrollbar-none snap-x snap-mandatory pt-1 px-1">
+        {/* Symptom Cards Grid (Responsive Edge-Bleed Swipe on Mobile) */}
+        <div className="-mx-3.5 px-3.5 sm:mx-0 sm:px-1 flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 overflow-x-auto pb-3 md:pb-0 scrollbar-none snap-x snap-mandatory pt-1">
           {symptomsData.map((item) => {
             const isSelected = activeSymptom === item.id;
             return (
@@ -102,7 +103,7 @@ export default function SymptomMatcher({ onOpenBooking, isZenPlaying, onToggleZe
                   setActiveSymptom(item.id);
                   onOpenBooking(item.targetService, item.price);
                 }}
-                className={`flex-shrink-0 w-[230px] md:w-auto rounded-2xl p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 snap-start border ${
+                className={`flex-shrink-0 w-[215px] xs:w-[235px] md:w-auto rounded-2xl p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 snap-start border active:scale-98 ${
                   isSelected 
                     ? 'border-[#e6c35c] bg-[#e6c35c]/15 shadow-[0_0_20px_rgba(230,195,92,0.3)]' 
                     : 'bg-[#14221c] border-white/10 hover:border-[#e6c35c]/60'

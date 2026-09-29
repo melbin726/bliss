@@ -18,26 +18,27 @@ export default function BookingStrip({ onOpenBooking }) {
       <div className="md:hidden">
         <div 
           onClick={() => onOpenBooking('Swedish Massage', '₹1,999')}
-          className="bg-gradient-to-r from-[#14221c] via-[#1a2c24] to-[#14221c] border border-[#e6c35c]/40 rounded-2xl p-3.5 shadow-xl flex items-center justify-between gap-3 cursor-pointer active:scale-98 transition-transform"
+          className="bg-gradient-to-r from-[#14221c] via-[#1a2c24] to-[#14221c] border border-[#e6c35c]/45 rounded-2xl p-3 xs:p-3.5 shadow-xl flex items-center justify-between gap-2.5 xs:gap-3 cursor-pointer active:scale-98 transition-transform"
         >
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-9 h-9 rounded-full bg-[#e6c35c]/15 border border-[#e6c35c]/35 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-full bg-[#e6c35c]/15 border border-[#e6c35c]/35 flex items-center justify-center shrink-0">
               <Calendar className="w-4 h-4 text-[#e6c35c]" />
             </div>
             <div className="min-w-0">
-              <span className="text-xs font-bold text-white block truncate">
+              <span className="text-xs xs:text-sm font-bold text-white block truncate">
                 Reserve Suite For Today
               </span>
-              <span className="text-[10px] text-emerald-400 block truncate font-medium">
+              <span className="text-[10px] xs:text-[11px] text-emerald-400 block truncate font-medium">
                 3 Private Suites Open • Pay After Therapy
               </span>
             </div>
           </div>
           <button 
             type="button"
-            className="px-3 py-1.5 rounded-xl bg-[#e6c35c] text-black font-bold text-xs shrink-0 shadow-sm"
+            className="px-3.5 py-2 rounded-xl bg-[#e6c35c] text-black font-bold text-xs shrink-0 shadow-md min-h-[40px] flex items-center gap-1 active:scale-95 transition"
           >
-            Check Slots
+            <span>Check Slots</span>
+            <Sparkles className="w-3 h-3 text-black shrink-0" />
           </button>
         </div>
       </div>

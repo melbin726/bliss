@@ -81,6 +81,7 @@ export default function App() {
       {/* Main Sticky Glass Navigation */}
       <Navbar
         isZenPlaying={isZenPlaying}
+        onToggleZen={toggleZenAudio}
         onToggleZenAudio={toggleZenAudio}
         onOpenBooking={() => handleOpenBooking()}
       />
@@ -93,7 +94,11 @@ export default function App() {
         <BookingStrip onOpenBooking={handleOpenBooking} />
 
         {/* 4-7-8 Breathing Decompression & Symptom Matcher */}
-        <SymptomMatcher onOpenBooking={handleOpenBooking} />
+        <SymptomMatcher 
+          onOpenBooking={handleOpenBooking} 
+          isZenPlaying={isZenPlaying}
+          onToggleZen={toggleZenAudio}
+        />
 
         {/* Signature Therapies Showcase */}
         <Therapies onOpenBooking={handleOpenBooking} />

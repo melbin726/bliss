@@ -19,9 +19,9 @@ export default function ThaiMassage({ onOpenBooking }) {
               Traditional Thai Massage is an ancient bodywork therapy performed on a comfortable floor mat. You remain in loose cotton attire while skilled practitioners guide your body through gentle yoga stretches, rhythmic palming, and acupressure.
             </p>
 
-            {/* 4 Highlights (2x2 Grid on Mobile) */}
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 mb-6">
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2">
+            {/* 4 Highlights (1-col on ultra-compact, 2x2 on xs+) */}
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6">
+              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">100% Oil-Free</h4>
@@ -29,7 +29,7 @@ export default function ThaiMassage({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2">
+              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Decompression</h4>
@@ -37,7 +37,7 @@ export default function ThaiMassage({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2">
+              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Assisted Yoga</h4>
@@ -45,7 +45,7 @@ export default function ThaiMassage({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2">
+              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Acupressure</h4>
@@ -56,8 +56,9 @@ export default function ThaiMassage({ onOpenBooking }) {
 
             <div className="flex items-center gap-3">
               <button
+                type="button"
                 onClick={() => onOpenBooking('Thai Massage', '₹2,499')}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md active:scale-98 transition"
+                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md active:scale-98 transition"
               >
                 <span>Book Thai Yoga (₹2,499)</span>
                 <ArrowRight className="w-3.5 h-3.5" />

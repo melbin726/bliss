@@ -71,20 +71,21 @@ export default function LocationMap({ onOpenBooking }) {
               </div>
             </div>
 
-            <div className="flex gap-2.5">
+            <div className="flex flex-col xs:flex-row gap-2.5">
               <a 
                 href="https://maps.google.com/?q=12.919902,77.610656" 
                 target="_blank" 
                 rel="noreferrer"
-                className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-98 transition"
+                className="flex-1 min-h-[44px] py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-98 transition"
               >
-                <Navigation className="w-3.5 h-3.5 text-black" />
+                <Navigation className="w-3.5 h-3.5 text-black shrink-0" />
                 <span>Open in Google Maps</span>
               </a>
 
               <button
+                type="button"
                 onClick={() => onOpenBooking('Directions & Immediate Arrival', '₹1,999')}
-                className="py-2.5 px-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs transition"
+                className="min-h-[44px] py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs active:scale-98 transition flex items-center justify-center"
               >
                 Book Arrival
               </button>
