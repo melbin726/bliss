@@ -1,96 +1,97 @@
 import React from 'react';
+import { Feather, Droplet, Users, ShowerHead, Sparkles } from 'lucide-react';
 
 export default function ComparisonGuide({ onOpenBooking }) {
   return (
-    <section id="guide" className="guide-section relative bg-[#0d1612] border-t border-white/10 py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+    <section id="guide" className="relative bg-[#0d1612] border-t border-white/10 py-10 sm:py-20 px-3.5 sm:px-6 lg:px-8">
       <div className="container max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="section-label inline-block text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-2">
+        <div className="text-center mb-8 sm:mb-12">
+          <span className="inline-block text-[10px] sm:text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
             Spa Decision Guide
           </span>
-          <h2 className="section-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white mb-2">
             Swedish vs. Aroma vs. Deep Tissue
           </h2>
-          <p className="section-subtitle text-xs sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
-            Not sure which therapy is right for your body today? Review our side-by-side comparison below to pick your ideal treatment.
+          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+            Side-by-side comparison to help you choose the ideal therapeutic bodywork.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           
           {/* 1. Swedish */}
-          <div className="guide-card bg-[#14221c] border border-white/10 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#e6c35c]/50 transition shadow-xl">
+          <div className="bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex flex-col justify-between shadow-lg">
             <div>
-              <span className="text-xs font-bold text-[#e6c35c] uppercase tracking-wider block mb-2">Full Body Calm</span>
-              <h3 className="font-serif text-2xl font-bold text-white mb-3">Swedish Massage</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal mb-5">
-                Focuses purely on physical relaxation. Gentle to moderate effleurage strokes warm up muscle tissues, flush lactic acid, and relieve generalized fatigue.
+              <span className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider block mb-1">Full Body Calm</span>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-white mb-2">Swedish Massage</h3>
+              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                Gentle to moderate strokes that warm up muscle tissues, flush lactic acid, and relieve generalized fatigue.
               </p>
               
-              <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-slate-200 border-t border-white/10 pt-5 mb-6 list-none p-0">
-                <li className="flex items-center gap-2"><i className="fas fa-feather text-[#e6c35c]"></i> <strong>Pressure:</strong> Gentle to Moderate</li>
-                <li className="flex items-center gap-2"><i className="fas fa-oil-can text-[#e6c35c]"></i> <strong>Oil:</strong> Neutral Herbal Carrier Oils</li>
-                <li className="flex items-center gap-2"><i className="fas fa-user text-[#e6c35c]"></i> <strong>Best For:</strong> First-timers &amp; stress unwind</li>
-                <li className="flex items-center gap-2"><i className="fas fa-shower text-[#e6c35c]"></i> <strong>Steam:</strong> En-suite private steam included</li>
+              <ul className="flex flex-col gap-2 text-xs text-slate-200 border-t border-white/10 pt-4 mb-5">
+                <li className="flex items-center gap-2"><Feather className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Pressure:</strong> Gentle to Moderate</span></li>
+                <li className="flex items-center gap-2"><Droplet className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Oil:</strong> Neutral Herbal Carrier Oils</span></li>
+                <li className="flex items-center gap-2"><Users className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Best For:</strong> First-timers &amp; stress unwind</span></li>
+                <li className="flex items-center gap-2"><ShowerHead className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Steam:</strong> En-suite steam included</span></li>
               </ul>
             </div>
 
             <button
               onClick={() => onOpenBooking('Swedish Massage', '₹1,999')}
-              className="btn-primary w-full bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs py-3 rounded-full shadow-[0_4px_16px_rgba(230,195,92,0.35)]"
+              className="w-full bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs py-2.5 sm:py-3 rounded-full shadow-md active:scale-98 transition cursor-pointer"
             >
               Choose Swedish (₹1,999)
             </button>
           </div>
 
           {/* 2. Aroma */}
-          <div className="guide-card bg-[#14221c] border-2 border-[#e6c35c] rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-[0_0_30px_rgba(230,195,92,0.2)] relative">
-            <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#e6c35c] text-slate-950 font-bold text-[0.7rem] px-3.5 py-1 rounded-full uppercase tracking-wider shadow-md">
-              Most Popular for Anxiety
+          <div className="bg-[#14221c] border-2 border-[#e6c35c] rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex flex-col justify-between shadow-xl relative">
+            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#e6c35c] text-slate-950 font-bold text-[10px] px-3 py-0.5 rounded-full uppercase tracking-wider shadow">
+              Most Popular
             </span>
             <div>
-              <span className="text-xs font-bold text-[#e6c35c] uppercase tracking-wider block mb-2 mt-2">Mind &amp; Sensory Calm</span>
-              <h3 className="font-serif text-2xl font-bold text-white mb-3">Aroma Massage</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal mb-5">
-                Focuses heavily on mental calm and nervous system resets. Combines gentle soothing touch with the direct inhalation of pure organic lavender and chamomile essential oils.
+              <span className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider block mb-1 mt-1">Mind &amp; Sensory Calm</span>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-white mb-2">Aroma Massage</h3>
+              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                Blends gentle soothing touch with the direct inhalation of organic lavender and chamomile essential oils.
               </p>
               
-              <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-slate-200 border-t border-white/10 pt-5 mb-6 list-none p-0">
-                <li className="flex items-center gap-2"><i className="fas fa-feather text-[#e6c35c]"></i> <strong>Pressure:</strong> Light to Gentle</li>
-                <li className="flex items-center gap-2"><i className="fas fa-spa text-[#e6c35c]"></i> <strong>Oil:</strong> Pure Lavender &amp; Chamomile</li>
-                <li className="flex items-center gap-2"><i className="fas fa-user text-[#e6c35c]"></i> <strong>Best For:</strong> Insomnia, burnout &amp; anxiety</li>
-                <li className="flex items-center gap-2"><i className="fas fa-shower text-[#e6c35c]"></i> <strong>Steam:</strong> En-suite private steam included</li>
+              <ul className="flex flex-col gap-2 text-xs text-slate-200 border-t border-white/10 pt-4 mb-5">
+                <li className="flex items-center gap-2"><Feather className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Pressure:</strong> Light to Gentle</span></li>
+                <li className="flex items-center gap-2"><Droplet className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Oil:</strong> Pure Lavender &amp; Chamomile</span></li>
+                <li className="flex items-center gap-2"><Users className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Best For:</strong> Burnout, insomnia &amp; calm</span></li>
+                <li className="flex items-center gap-2"><ShowerHead className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Steam:</strong> En-suite steam included</span></li>
               </ul>
             </div>
 
             <button
               onClick={() => onOpenBooking('Aroma Massage', '₹2,199')}
-              className="btn-primary w-full bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs py-3 rounded-full shadow-[0_4px_18px_rgba(230,195,92,0.45)] hover:scale-105 transition"
+              className="w-full bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs py-2.5 sm:py-3 rounded-full shadow-md active:scale-98 transition cursor-pointer"
             >
               Choose Aroma (₹2,199)
             </button>
           </div>
 
           {/* 3. Deep Tissue */}
-          <div className="guide-card bg-[#14221c] border border-white/10 rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:border-[#e6c35c]/50 transition shadow-xl">
+          <div className="bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex flex-col justify-between shadow-lg">
             <div>
-              <span className="text-xs font-bold text-[#e6c35c] uppercase tracking-wider block mb-2">Deep Knots &amp; Posture</span>
-              <h3 className="font-serif text-2xl font-bold text-white mb-3">Deep Tissue Massage</h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal mb-5">
-                Targeted, slow, firm friction strokes designed to break down dense adhesions and stubborn knots in the trapezius, rhomboids, neck, and lower back.
+              <span className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider block mb-1">Deep Knots &amp; Posture</span>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-white mb-2">Deep Tissue Massage</h3>
+              <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                Targeted, firm friction strokes designed to release dense adhesions and knots in the trapezius and back.
               </p>
               
-              <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-slate-200 border-t border-white/10 pt-5 mb-6 list-none p-0">
-                <li className="flex items-center gap-2"><i className="fas fa-fist-raised text-[#e6c35c]"></i> <strong>Pressure:</strong> Firm &amp; Deep</li>
-                <li className="flex items-center gap-2"><i className="fas fa-fire-alt text-[#e6c35c]"></i> <strong>Oil:</strong> Deep penetrating wintergreen</li>
-                <li className="flex items-center gap-2"><i className="fas fa-user text-[#e6c35c]"></i> <strong>Best For:</strong> Desk neck, sciatica &amp; gym soreness</li>
-                <li className="flex items-center gap-2"><i className="fas fa-shower text-[#e6c35c]"></i> <strong>Steam:</strong> En-suite private steam included</li>
+              <ul className="flex flex-col gap-2 text-xs text-slate-200 border-t border-white/10 pt-4 mb-5">
+                <li className="flex items-center gap-2"><Feather className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Pressure:</strong> Firm &amp; Deep</span></li>
+                <li className="flex items-center gap-2"><Droplet className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Oil:</strong> Warm Wintergreen Infusion</span></li>
+                <li className="flex items-center gap-2"><Users className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Best For:</strong> Desk neck, stiffness &amp; gym knots</span></li>
+                <li className="flex items-center gap-2"><ShowerHead className="w-3.5 h-3.5 text-[#e6c35c]" /> <span><strong>Steam:</strong> En-suite steam included</span></li>
               </ul>
             </div>
 
             <button
               onClick={() => onOpenBooking('Deep Tissue Massage', '₹2,299')}
-              className="btn-primary w-full bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs py-3 rounded-full shadow-[0_4px_16px_rgba(230,195,92,0.35)]"
+              className="w-full bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs py-2.5 sm:py-3 rounded-full shadow-md active:scale-98 transition cursor-pointer"
             >
               Choose Deep Tissue (₹2,299)
             </button>

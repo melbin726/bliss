@@ -1,49 +1,56 @@
 import React from 'react';
-import { Phone, MessageCircle, CalendarCheck, MapPin } from 'lucide-react';
+import { Phone, MessageCircle, CalendarCheck, MapPin, Sparkles } from 'lucide-react';
 
 export default function MobileBottomNav({ onOpenBooking }) {
   return (
-    <div className="md:hidden fixed bottom-3 inset-x-3 z-40">
-      <div className="bg-[#0e1713]/95 backdrop-blur-xl border border-[#e6c35c]/30 rounded-2xl p-2 shadow-2xl flex items-center justify-between gap-1">
+    <nav 
+      aria-label="Mobile Bottom Navigation"
+      className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-[#080d0a]/95 backdrop-blur-xl border-t border-[#e6c35c]/30 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-[0_-10px_25px_rgba(0,0,0,0.8)]"
+    >
+      <div className="flex items-center justify-between gap-2 max-w-md mx-auto">
         
-        {/* Call Reception */}
+        {/* Call Concierge */}
         <a
           href="tel:09945264342"
-          className="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-xl text-slate-200 hover:text-white hover:bg-white/5 active:scale-95 transition-all text-center"
+          className="flex flex-col items-center justify-center py-1.5 px-2.5 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 text-slate-200 hover:text-white transition-all min-w-[54px]"
+          title="Call Reception"
         >
-          <Phone className="w-4 h-4 text-[#e6c35c] mb-1" />
-          <span className="text-[10px] font-semibold tracking-tight">Call</span>
+          <Phone className="w-4 h-4 text-[#e6c35c] mb-0.5" />
+          <span className="text-[10px] font-medium tracking-tight">Call</span>
         </a>
 
         {/* WhatsApp */}
         <a
-          href="https://wa.me/919945264342?text=Hello%20Bliss%20Spa,%20I%20would%20like%20to%20inquire%20about%20booking%20an%20appointment."
+          href="https://wa.me/919945264342?text=Hello%20Bliss%20Spa%20BTM%20Layout,%20I%20would%20like%20to%20check%20availability%20for%20a%20therapy."
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-xl text-slate-200 hover:text-white hover:bg-white/5 active:scale-95 transition-all text-center"
+          className="flex flex-col items-center justify-center py-1.5 px-2.5 rounded-xl bg-white/5 hover:bg-[#25d366]/15 active:scale-95 text-slate-200 hover:text-emerald-400 transition-all min-w-[54px]"
+          title="WhatsApp Concierge"
         >
-          <MessageCircle className="w-4 h-4 text-[#25D366] mb-1" />
-          <span className="text-[10px] font-semibold tracking-tight">WhatsApp</span>
+          <MessageCircle className="w-4 h-4 text-[#25D366] mb-0.5" />
+          <span className="text-[10px] font-medium tracking-tight">WhatsApp</span>
         </a>
 
         {/* Directions */}
         <a
           href="#location"
-          className="flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-xl text-slate-200 hover:text-white hover:bg-white/5 active:scale-95 transition-all text-center"
+          className="flex flex-col items-center justify-center py-1.5 px-2.5 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 text-slate-200 hover:text-white transition-all min-w-[54px]"
+          title="Directions & Map"
         >
-          <MapPin className="w-4 h-4 text-[#e6c35c] mb-1" />
-          <span className="text-[10px] font-semibold tracking-tight">Map</span>
+          <MapPin className="w-4 h-4 text-[#e6c35c] mb-0.5" />
+          <span className="text-[10px] font-medium tracking-tight">Map</span>
         </a>
 
-        {/* Instant Book CTA */}
+        {/* Instant Book CTA Pill */}
         <button
-          onClick={() => onOpenBooking()}
-          className="flex-1 flex flex-col items-center justify-center py-2 px-2 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b38e28] text-black font-bold shadow-lg shadow-[#d4af37]/20 active:scale-95 transition-all text-center"
+          onClick={() => onOpenBooking('Swedish Massage', '₹1,999')}
+          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs shadow-[0_2px_12px_rgba(230,195,92,0.4)] active:scale-98 transition-all"
         >
-          <CalendarCheck className="w-4 h-4 text-black mb-1" />
-          <span className="text-[10px] uppercase font-bold tracking-tight">Book Now</span>
+          <CalendarCheck className="w-3.5 h-3.5 text-black shrink-0" />
+          <span className="truncate uppercase tracking-wider font-extrabold text-[11px]">Book Session</span>
         </button>
+
       </div>
-    </div>
+    </nav>
   );
 }

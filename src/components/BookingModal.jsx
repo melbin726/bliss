@@ -9,7 +9,7 @@ export default function BookingModal({
   initialPrice = '',
   onBookingSuccess
 }) {
-  const [service, setService] = useState(initialService || therapiesData[0]?.title || 'Aromatherapy Calming Ritual');
+  const [service, setService] = useState(initialService || therapiesData[0]?.title || 'Swedish Massage');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('11:00 AM');
   const [name, setName] = useState('');
@@ -25,7 +25,6 @@ export default function BookingModal({
   }, [initialService]);
 
   useEffect(() => {
-    // Set default date to today in YYYY-MM-DD
     const today = new Date().toISOString().split('T')[0];
     setDate(today);
   }, []);
@@ -45,7 +44,7 @@ export default function BookingModal({
   const timeSlots = [
     '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', 
     '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', 
-    '06:00 PM', '07:00 PM', '08:00 PM'
+    '06:00 PM', '07:00 PM', '08:00 PM', '09:00 PM'
   ];
 
   const handleSubmit = (e) => {
@@ -60,11 +59,10 @@ export default function BookingModal({
       service,
       date,
       time,
-      price: initialPrice || 'Starting from ₹1,499',
+      price: initialPrice || 'Starting from ₹1,999',
       notes: notes.trim() || 'No specific requests'
     };
 
-    // Save to local storage for front desk admin log
     try {
       const existing = JSON.parse(localStorage.getItem('bliss_spa_bookings') || '[]');
       existing.unshift(newBooking);
@@ -102,47 +100,47 @@ export default function BookingModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
-        className="relative w-full max-w-lg bg-[#0e1713] border border-[#e6c35c]/30 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-8"
+        className="relative w-full max-w-lg bg-[#0e1713] border border-[#e6c35c]/30 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-2xl overflow-y-auto max-h-[92vh] my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Glow Accent */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-[#e6c35c]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-36 h-36 bg-[#e6c35c]/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Close Button */}
         <button
           onClick={handleResetAndClose}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+          className="absolute top-4 right-4 w-7 h-7 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
 
         {!isSubmitted ? (
           <div>
-            <div className="mb-6">
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
-                <Sparkles className="w-3.5 h-3.5" />
+            <div className="mb-4 sm:mb-5">
+              <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
+                <Sparkles className="w-3 h-3" />
                 Reserve Sanctuary Session
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
                 Book Your Therapy
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1">
-                Zero advance payment required. Pay at the spa reception desk upon arrival.
+              <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5">
+                Pay ₹0 advance. Pay at spa front desk after your therapy.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-3.5">
               {/* Select Service */}
               <div>
-                <label className="block text-xs font-semibold text-slate-200 mb-1.5">
-                  Select Treatment
+                <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                  Treatment
                 </label>
                 <select
                   value={service}
                   onChange={(e) => setService(e.target.value)}
-                  className="w-full bg-[#17251d] border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#e6c35c] transition-colors"
+                  className="w-full bg-[#17251d] border border-white/10 rounded-xl px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-[#e6c35c]"
                 >
                   {therapiesData.map((t) => (
                     <option key={t.id} value={t.title} className="bg-[#121c16] text-white">
@@ -159,30 +157,28 @@ export default function BookingModal({
               </div>
 
               {/* Date & Time Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-200 mb-1.5">
-                    Preferred Date
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                    Date
                   </label>
-                  <div className="relative">
-                    <input
-                      type="date"
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      required
-                      className="w-full bg-[#17251d] border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#e6c35c] transition-colors"
-                    />
-                  </div>
+                  <input
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    required
+                    className="w-full bg-[#17251d] border border-white/10 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-[#e6c35c]"
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">
                     Time Slot
                   </label>
                   <select
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    className="w-full bg-[#17251d] border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#e6c35c] transition-colors"
+                    className="w-full bg-[#17251d] border border-white/10 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-[#e6c35c]"
                   >
                     {timeSlots.map((slot) => (
                       <option key={slot} value={slot} className="bg-[#121c16] text-white">
@@ -194,10 +190,10 @@ export default function BookingModal({
               </div>
 
               {/* Guest Name & Phone */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-200 mb-1.5">
-                    Your Full Name
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                    Full Name
                   </label>
                   <div className="relative">
                     <input
@@ -206,15 +202,15 @@ export default function BookingModal({
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      className="w-full bg-[#17251d] border border-white/10 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#e6c35c] transition-colors"
+                      className="w-full bg-[#17251d] border border-white/10 rounded-xl pl-8 pr-2.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-[#e6c35c]"
                     />
-                    <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <User className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-200 mb-1.5">
-                    Phone / WhatsApp No.
+                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                    Phone Number
                   </label>
                   <div className="relative">
                     <input
@@ -223,86 +219,86 @@ export default function BookingModal({
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       required
-                      className="w-full bg-[#17251d] border border-white/10 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#e6c35c] transition-colors"
+                      className="w-full bg-[#17251d] border border-white/10 rounded-xl pl-8 pr-2.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-[#e6c35c]"
                     />
-                    <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <Phone className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
                   </div>
                 </div>
               </div>
 
-              {/* Notes / Therapist Preference */}
+              {/* Preferences */}
               <div>
-                <label className="block text-xs font-semibold text-slate-200 mb-1.5">
-                  Preferences / Specific Focus Area (Optional)
+                <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                  Focus Area / Preferences (Optional)
                 </label>
                 <textarea
                   rows="2"
-                  placeholder="e.g. Neck & upper shoulder stiffness, medium-firm pressure..."
+                  placeholder="e.g. Upper shoulder knots, firm pressure, female therapist..."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-[#17251d] border border-white/10 rounded-xl p-3 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#e6c35c] transition-colors"
+                  className="w-full bg-[#17251d] border border-white/10 rounded-xl p-2.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#e6c35c]"
                 />
               </div>
 
               {/* Submit CTA */}
               <button
                 type="submit"
-                className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-[#d4af37] via-[#f3d978] to-[#d4af37] text-black font-serif font-bold text-sm tracking-wide shadow-xl shadow-[#d4af37]/25 hover:brightness-105 active:scale-[0.99] transition-all flex items-center justify-center gap-2 mt-2"
+                className="w-full py-3 px-5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f3d978] to-[#d4af37] text-black font-serif font-bold text-xs sm:text-sm tracking-wide shadow-md active:scale-98 transition flex items-center justify-center gap-1.5 mt-2"
               >
-                <span>Confirm Reservation</span>
-                <Sparkles className="w-4 h-4 text-black" />
+                <span>Confirm Reservation (₹0 Advance)</span>
+                <Sparkles className="w-3.5 h-3.5 text-black" />
               </button>
 
-              <p className="text-[11px] text-center text-slate-400 mt-2">
-                🔒 Free instant cancellation. Your suite will be held for 15 minutes after appointed time.
+              <p className="text-[10px] text-center text-slate-400 mt-1">
+                🔒 Free instant cancellation. Suite held for 15 mins after slot.
               </p>
             </form>
           </div>
         ) : (
           /* Confirmation Success Screen */
-          <div className="text-center py-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-4 border border-emerald-500/40">
-              <CheckCircle2 className="w-9 h-9" />
+          <div className="text-center py-2">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3 border border-emerald-500/40">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
 
-            <h3 className="font-serif text-2xl font-bold text-white mb-2">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-white mb-1">
               Appointment Reserved!
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-sm mx-auto mb-6">
-              Thank you, <strong className="text-white">{confirmedBooking?.name}</strong>. Your session has been queued in our front desk scheduling system.
+            <p className="text-xs text-slate-300 max-w-xs mx-auto mb-4">
+              Thank you, <strong className="text-white">{confirmedBooking?.name}</strong>. Your session is queued in our front desk log.
             </p>
 
-            <div className="bg-[#17251d] border border-white/10 rounded-2xl p-4 text-left mb-6 text-xs sm:text-sm space-y-2">
-              <div className="flex justify-between border-b border-white/5 pb-2">
-                <span className="text-slate-400">Booking Reference:</span>
+            <div className="bg-[#17251d] border border-white/10 rounded-xl p-3 text-left mb-5 text-xs space-y-1.5">
+              <div className="flex justify-between border-b border-white/5 pb-1.5">
+                <span className="text-slate-400">Booking Ref:</span>
                 <span className="text-[#e6c35c] font-mono font-bold">{confirmedBooking?.id}</span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-2">
+              <div className="flex justify-between border-b border-white/5 pb-1.5">
                 <span className="text-slate-400">Treatment:</span>
                 <span className="text-white font-medium">{confirmedBooking?.service}</span>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-2">
-                <span className="text-slate-400">Date &amp; Time:</span>
+              <div className="flex justify-between border-b border-white/5 pb-1.5">
+                <span className="text-slate-400">Time:</span>
                 <span className="text-white font-medium">{confirmedBooking?.date} at {confirmedBooking?.time}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">Location:</span>
-                <span className="text-white text-right font-medium">BTM 1st Stage, near Udupi Garden</span>
+                <span className="text-white font-medium">BTM 1st Stage</span>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-2">
               <button
                 onClick={handleWhatsAppNotify}
-                className="flex-1 py-3 px-4 rounded-xl bg-[#25D366] text-black font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#20bd5a] transition-colors"
+                className="flex-1 py-2.5 px-3 rounded-xl bg-[#25D366] text-black font-bold text-xs flex items-center justify-center gap-1.5 hover:bg-[#20bd5a] transition"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-3.5 h-3.5" />
                 <span>Send WhatsApp Copy</span>
               </button>
 
               <button
                 onClick={handleResetAndClose}
-                className="py-3 px-5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs transition-colors"
+                className="py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs transition"
               >
                 Done
               </button>

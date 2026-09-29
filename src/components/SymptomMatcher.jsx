@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Sparkles, Heart, Phone, ArrowRight, ShieldCheck, ShowerHead, Car, DollarSign, Calendar } from 'lucide-react';
 import { symptomsData } from '../data/symptomsData';
 
 export default function SymptomMatcher({ onOpenBooking, isZenPlaying, onToggleZen }) {
@@ -27,69 +28,71 @@ export default function SymptomMatcher({ onOpenBooking, isZenPlaying, onToggleZe
   }, []);
 
   return (
-    <section id="matcher" className="experience-section relative bg-gradient-to-b from-[#0a110e] via-[#101b16] to-[#0a110e] border-t border-white/10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <section id="matcher" className="relative bg-gradient-to-b from-[#0a110e] via-[#101b16] to-[#0a110e] border-t border-white/10 py-10 sm:py-20 px-3.5 sm:px-6 lg:px-8">
       <div className="container max-w-7xl mx-auto">
         
         {/* 4-7-8 Breathing Decompression Box */}
-        <div className="breathing-box max-w-2xl mx-auto text-center bg-gradient-to-b from-[#14221c] to-[#0d1612] border border-[#e6c35c]/35 rounded-3xl p-6 sm:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.55)] backdrop-blur-md">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <span className="live-pulse-badge inline-flex items-center gap-2 bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#fff2cc] text-xs font-semibold px-3 py-1 rounded-full">
-              <span className="pulse-dot w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]"></span>
+        <div className="max-w-xl mx-auto text-center bg-gradient-to-b from-[#14221c] to-[#0d1612] border border-[#e6c35c]/35 rounded-3xl p-5 sm:p-8 shadow-xl backdrop-blur-md">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="inline-flex items-center gap-1.5 bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#fff2cc] text-[10px] sm:text-xs font-semibold px-3 py-0.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
               Mind &amp; Body Decompression
             </span>
           </div>
-          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">Take A 30-Second Breath</h3>
-          <p className="font-sans text-xs sm:text-sm text-slate-200 max-w-lg mx-auto leading-relaxed">
-            Your relaxation does not start at our spa door — it begins right now. Sync your breath with the glowing golden aura below and feel your shoulder tension dissolve.
+          <h3 className="font-serif text-xl sm:text-3xl font-bold text-white mb-1.5">Take A 30-Second Breath</h3>
+          <p className="font-sans text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+            Sync your breath with the glowing golden aura below and feel shoulder tension release.
           </p>
 
-          <div className="breathing-circle-wrapper relative w-40 h-40 sm:w-48 sm:h-48 mx-auto my-6 flex items-center justify-center">
-            <div className="breathing-ring absolute inset-0 rounded-full border-2 border-[#e6c35c]/60 shadow-[0_0_35px_rgba(230,195,92,0.45)]"></div>
-            <div className="breathing-text font-serif text-lg sm:text-xl font-bold text-[#e6c35c] z-10">
+          <div className="relative w-32 h-32 sm:w-44 sm:h-44 mx-auto my-4 sm:my-6 flex items-center justify-center">
+            <div className="breathing-ring absolute inset-0 rounded-full border-2 border-[#e6c35c]/60 shadow-[0_0_30px_rgba(230,195,92,0.4)]" />
+            <div className="font-serif text-sm sm:text-lg font-bold text-[#e6c35c] z-10 px-2">
               {breathText}
             </div>
           </div>
 
-          <div className="flex justify-center gap-3 flex-wrap mt-4">
+          <div className="flex justify-center gap-2 sm:gap-3 flex-wrap mt-3">
             <button
               onClick={onToggleZen}
-              className={`btn-secondary inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition cursor-pointer border ${
+              className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer border ${
                 isZenPlaying 
                   ? 'bg-[#e6c35c] text-slate-950 border-[#e6c35c]' 
                   : 'bg-[#e6c35c]/10 hover:bg-[#e6c35c]/20 border-[#e6c35c] text-[#fff2cc]'
               }`}
             >
-              <i className="fas fa-water"></i>
-              <span>{isZenPlaying ? 'Mute Zen Audio' : 'Play Zen Singing Bowls'}</span>
+              <span>{isZenPlaying ? 'Mute Zen Audio' : 'Play Zen Audio'}</span>
             </button>
             <a 
               href="tel:09945264342" 
-              className="btn-secondary inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/20 text-slate-200 px-4 py-2 rounded-full text-xs font-semibold transition"
+              className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/20 text-slate-200 px-3.5 py-1.5 rounded-full text-xs font-semibold transition"
             >
-              <i className="fas fa-phone-alt text-[#e6c35c]"></i>
-              <span>Front Desk Concierge</span>
+              <Phone className="w-3 h-3 text-[#e6c35c]" />
+              <span>Reception Help</span>
             </a>
           </div>
         </div>
 
         {/* Diagnostic Matcher Headline */}
-        <div className="text-center mt-14 sm:mt-16">
-          <span className="section-label inline-block text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-2">Self-Diagnostic Matcher</span>
-          <h2 className="section-heading font-serif text-2xl sm:text-4xl font-bold text-white mb-3">How Does Your Body Feel Today?</h2>
-          <p className="section-subtitle text-xs sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
-            Tap your current state of fatigue below. Our wellness concierge will instantly prescribe the exact therapeutic ritual tailored for your body.
+        <div className="text-center mt-10 sm:mt-16 mb-4 sm:mb-8">
+          <span className="inline-block text-[10px] sm:text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
+            Self-Diagnostic Matcher
+          </span>
+          <h2 className="font-serif text-xl sm:text-3xl font-bold text-white mb-1.5">
+            How Does Your Body Feel Today?
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+            Tap your current fatigue symptom below to match your body with the ideal therapeutic treatment.
           </p>
         </div>
 
         {/* Mobile Swipe Hint */}
-        <div className="mobile-swipe-hint flex md:hidden items-center justify-center gap-2 text-xs text-[#e6c35c] font-medium my-4">
-          <i className="fas fa-hand-pointer"></i>
+        <div className="flex md:hidden items-center justify-center gap-1.5 text-[11px] text-[#e6c35c] font-medium mb-3">
           <span>Swipe cards to find your symptom</span>
-          <i className="fas fa-arrow-right"></i>
+          <ArrowRight className="w-3 h-3" />
         </div>
 
-        {/* Symptom Cards Grid */}
-        <div className="symptom-grid flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-none snap-x snap-mandatory pt-2">
+        {/* Symptom Cards Grid (Responsive Swipe on Mobile) */}
+        <div className="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 overflow-x-auto pb-3 md:pb-0 scrollbar-none snap-x snap-mandatory pt-1 px-1">
           {symptomsData.map((item) => {
             const isSelected = activeSymptom === item.id;
             return (
@@ -99,65 +102,65 @@ export default function SymptomMatcher({ onOpenBooking, isZenPlaying, onToggleZe
                   setActiveSymptom(item.id);
                   onOpenBooking(item.targetService, item.price);
                 }}
-                className={`symptom-card flex-shrink-0 w-[260px] md:w-auto rounded-2xl p-5 flex flex-col justify-between cursor-pointer transition-all duration-300 snap-start group border ${
+                className={`flex-shrink-0 w-[230px] md:w-auto rounded-2xl p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 snap-start border ${
                   isSelected 
-                    ? 'border-[#e6c35c] bg-[#e6c35c]/15 shadow-[0_0_24px_rgba(230,195,92,0.3)]' 
-                    : 'bg-[#14221c] border-white/10 hover:border-[#e6c35c]/60 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(230,195,92,0.15)]'
+                    ? 'border-[#e6c35c] bg-[#e6c35c]/15 shadow-[0_0_20px_rgba(230,195,92,0.3)]' 
+                    : 'bg-[#14221c] border-white/10 hover:border-[#e6c35c]/60'
                 }`}
               >
                 <div>
-                  <div className="symptom-icon text-3xl mb-3">{item.icon}</div>
-                  <h4 className="symptom-title font-serif text-lg font-bold text-white group-hover:text-[#e6c35c] transition">{item.title}</h4>
-                  <p className="symptom-desc text-xs text-slate-300 leading-relaxed mt-2 font-normal">{item.description}</p>
+                  <div className="text-2xl mb-2">{item.icon}</div>
+                  <h4 className="font-serif text-base font-bold text-white">{item.title}</h4>
+                  <p className="text-xs text-slate-300 leading-relaxed mt-1">{item.description}</p>
                 </div>
-                <div className="symptom-recommendation mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-[#e6c35c] group-hover:text-white transition">
-                  <span>👉 {item.recommendation} ({item.price})</span>
-                  <i className="fas fa-calendar-check"></i>
+                <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-[#e6c35c]">
+                  <span className="truncate pr-1">👉 {item.recommendation} ({item.price})</span>
+                  <Calendar className="w-3.5 h-3.5 shrink-0" />
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Zero-Friction Trust Guarantees */}
-        <div className="trust-guarantee-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-14">
-          <div className="trust-item bg-[#14221c]/80 border border-white/10 rounded-2xl p-5 flex items-start gap-4 backdrop-blur-sm hover:border-[#e6c35c]/40 transition">
-            <div className="trust-item-icon w-11 h-11 rounded-xl bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#e6c35c] flex items-center justify-center text-lg flex-shrink-0">
-              <i className="fas fa-hand-holding-usd"></i>
+        {/* Zero-Friction Trust Guarantees (Clean 2-Column on Mobile) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mt-8 sm:mt-14">
+          <div className="bg-[#14221c]/80 border border-white/10 rounded-2xl p-3.5 sm:p-4 flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#e6c35c] flex items-center justify-center shrink-0">
+              <DollarSign className="w-4 h-4" />
             </div>
-            <div className="trust-item-text">
-              <h5 className="text-sm font-bold text-white mb-1">Pay ₹0 Today Online</h5>
-              <p className="text-xs text-slate-300 leading-relaxed font-normal">No credit card required. Pay at Bliss Spa front desk only after your therapy is complete.</p>
-            </div>
-          </div>
-
-          <div className="trust-item bg-[#14221c]/80 border border-white/10 rounded-2xl p-5 flex items-start gap-4 backdrop-blur-sm hover:border-[#e6c35c]/40 transition">
-            <div className="trust-item-icon w-11 h-11 rounded-xl bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#e6c35c] flex items-center justify-center text-lg flex-shrink-0">
-              <i className="fas fa-route"></i>
-            </div>
-            <div className="trust-item-text">
-              <h5 className="text-sm font-bold text-white mb-1">Traffic-Friendly Reschedule</h5>
-              <p className="text-xs text-slate-300 leading-relaxed font-normal">Stuck in Bangalore traffic? Free rescheduling anytime with zero cancellation penalty.</p>
+            <div>
+              <h5 className="text-xs sm:text-sm font-bold text-white mb-0.5">Pay ₹0 Advance</h5>
+              <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed">Pay at reception desk only after your therapy is complete.</p>
             </div>
           </div>
 
-          <div className="trust-item bg-[#14221c]/80 border border-white/10 rounded-2xl p-5 flex items-start gap-4 backdrop-blur-sm hover:border-[#e6c35c]/40 transition">
-            <div className="trust-item-icon w-11 h-11 rounded-xl bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#e6c35c] flex items-center justify-center text-lg flex-shrink-0">
-              <i className="fas fa-shower"></i>
+          <div className="bg-[#14221c]/80 border border-white/10 rounded-2xl p-3.5 sm:p-4 flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#e6c35c] flex items-center justify-center shrink-0">
+              <Car className="w-4 h-4" />
             </div>
-            <div className="trust-item-text">
-              <h5 className="text-sm font-bold text-white mb-1">En-Suite Steam &amp; Shower</h5>
-              <p className="text-xs text-slate-300 leading-relaxed font-normal">Private A/C therapy room with personal herbal steam &amp; hot shower included with every session.</p>
+            <div>
+              <h5 className="text-xs sm:text-sm font-bold text-white mb-0.5">Traffic Reschedule</h5>
+              <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed">Stuck in BTM traffic? Free instant reschedule with zero penalty.</p>
             </div>
           </div>
 
-          <div className="trust-item bg-[#14221c]/80 border border-white/10 rounded-2xl p-5 flex items-start gap-4 backdrop-blur-sm hover:border-[#e6c35c]/40 transition">
-            <div className="trust-item-icon w-11 h-11 rounded-xl bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#e6c35c] flex items-center justify-center text-lg flex-shrink-0">
-              <i className="fas fa-user-check"></i>
+          <div className="bg-[#14221c]/80 border border-white/10 rounded-2xl p-3.5 sm:p-4 flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#e6c35c] flex items-center justify-center shrink-0">
+              <ShowerHead className="w-4 h-4" />
             </div>
-            <div className="trust-item-text">
-              <h5 className="text-sm font-bold text-white mb-1">Certified Therapists</h5>
-              <p className="text-xs text-slate-300 leading-relaxed font-normal">Skilled, background-verified practitioners. Choose your exact pressure: gentle, medium, or deep.</p>
+            <div>
+              <h5 className="text-xs sm:text-sm font-bold text-white mb-0.5">Steam &amp; Shower</h5>
+              <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed">Private A/C suite with personal steam &amp; shower included.</p>
+            </div>
+          </div>
+
+          <div className="bg-[#14221c]/80 border border-white/10 rounded-2xl p-3.5 sm:p-4 flex items-start gap-3">
+            <div className="w-9 h-9 rounded-xl bg-[#e6c35c]/15 border border-[#e6c35c]/40 text-[#e6c35c] flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-4 h-4" />
+            </div>
+            <div>
+              <h5 className="text-xs sm:text-sm font-bold text-white mb-0.5">Certified Therapists</h5>
+              <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed">Skilled practitioners with custom pressure: gentle, medium, deep.</p>
             </div>
           </div>
         </div>

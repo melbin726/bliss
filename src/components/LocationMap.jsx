@@ -1,116 +1,110 @@
 import React from 'react';
+import { MapPin, Phone, Clock, Navigation, Compass, ExternalLink } from 'lucide-react';
 
-export default function LocationMap() {
+export default function LocationMap({ onOpenBooking }) {
   return (
-    <section id="location" className="location-section relative bg-[#0a110e] border-t border-white/10 py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+    <section id="location" className="relative bg-[#0a110e] border-t border-white/10 py-10 sm:py-20 px-3.5 sm:px-6 lg:px-8">
       <div className="container max-w-7xl mx-auto">
-        <div className="location-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
           
           {/* Location Information Card */}
-          <div className="location-info-card bg-[#14221c] border border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col justify-between">
+          <div className="bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl flex flex-col justify-between">
             <div>
-              <span className="section-label inline-block text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-2">
+              <span className="inline-block text-[10px] sm:text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
                 Directions &amp; Contact
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">
+              <h3 className="font-serif text-xl sm:text-3xl font-bold text-white mb-1.5">
                 BLISS SPA &amp; BTM LAYOUT
               </h3>
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-6 font-normal">
-                A relaxing wellness destination offering a range of rejuvenating spa and massage treatments in Bengaluru.
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
+                Premium wellness destination near Udupi Garden signal in BTM 1st Stage.
               </p>
 
-              <div className="loc-detail-group flex flex-col gap-4 mb-6">
-                <div className="loc-item flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl p-4">
-                  <div className="loc-icon w-9 h-9 rounded-xl bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center text-sm flex-shrink-0">
-                    <i className="fas fa-map-marked-alt"></i>
+              <div className="space-y-3 mb-5">
+                <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4" />
                   </div>
-                  <div className="loc-text">
-                    <h6 className="text-xs font-bold text-[#e6c35c] uppercase tracking-wider mb-1">Address</h6>
-                    <p className="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed">
+                  <div>
+                    <h6 className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider">Address</h6>
+                    <p className="text-xs sm:text-sm text-slate-100 font-medium leading-snug mt-0.5">
                       No. 63, 1st Floor, B-Block, 16th Main, 8th Cross Road, near Udupi Garden, BTM 1st Stage, Bengaluru 560029.
                     </p>
                   </div>
                 </div>
 
-                <div className="loc-item flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl p-4">
-                  <div className="loc-icon w-9 h-9 rounded-xl bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center text-sm flex-shrink-0">
-                    <i className="fas fa-phone-alt"></i>
+                <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4" />
                   </div>
-                  <div className="loc-text">
-                    <h6 className="text-xs font-bold text-[#e6c35c] uppercase tracking-wider mb-1">Phone Numbers</h6>
-                    <p className="text-xs sm:text-sm leading-relaxed">
+                  <div>
+                    <h6 className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider">Phone Numbers</h6>
+                    <p className="text-xs sm:text-sm leading-snug mt-0.5 space-x-2">
                       <a href="tel:09945264342" className="text-[#e6c35c] font-bold hover:underline">099452 64342</a>
-                      <span className="text-white/30 mx-2">/</span>
+                      <span className="text-white/30">/</span>
                       <a href="tel:08095266198" className="text-white font-bold hover:underline">080 9526 6198</a>
                     </p>
                   </div>
                 </div>
 
-                <div className="loc-item flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl p-4">
-                  <div className="loc-icon w-9 h-9 rounded-xl bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center text-sm flex-shrink-0">
-                    <i className="far fa-clock"></i>
+                <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center shrink-0">
+                    <Clock className="w-4 h-4" />
                   </div>
-                  <div className="loc-text">
-                    <h6 className="text-xs font-bold text-[#e6c35c] uppercase tracking-wider mb-1">Operating Hours</h6>
-                    <p className="text-xs sm:text-sm text-slate-200">
-                      Monday - Sunday: 10:00 AM – 10:00 PM (Appointments &amp; Walk-ins accepted)
-                    </p>
-                  </div>
-                </div>
-
-                <div className="loc-item flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl p-4">
-                  <div className="loc-icon w-9 h-9 rounded-xl bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center text-sm flex-shrink-0">
-                    <i className="fas fa-landmark"></i>
-                  </div>
-                  <div className="loc-text">
-                    <h6 className="text-xs font-bold text-[#e6c35c] uppercase tracking-wider mb-1">Key Landmarks</h6>
-                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
-                      Near Udupi Garden Signal, 16th Main Road, BTM 1st Stage. Conveniently connected to Madiwala, Silk Board, and Bannerghatta Road.
+                  <div>
+                    <h6 className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider">Operating Hours</h6>
+                    <p className="text-xs text-slate-200 mt-0.5">
+                      Mon – Sun: 10:00 AM – 10:00 PM (All 7 Days Open)
                     </p>
                   </div>
                 </div>
               </div>
+
+              {/* Landmark Cues */}
+              <div className="bg-[#0a110e]/70 border border-[#e6c35c]/25 rounded-xl p-3 mb-5">
+                <span className="text-[10px] uppercase font-bold text-[#e6c35c] block mb-1">
+                  Nearby Landmarks
+                </span>
+                <p className="text-[11px] text-slate-300 leading-relaxed">
+                  2 mins from Udupi Garden signal • 5 mins from Silk Board Junction • 8 mins from Koramangala 5th Block.
+                </p>
+              </div>
             </div>
 
-            <div className="loc-actions flex gap-3 flex-wrap pt-2">
+            <div className="flex gap-2.5">
               <a 
                 href="https://maps.google.com/?q=12.919902,77.610656" 
                 target="_blank" 
                 rel="noreferrer"
-                className="btn-primary inline-flex items-center gap-2 bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-sm px-6 py-3 rounded-full shadow-[0_4px_18px_rgba(230,195,92,0.4)] hover:scale-105 active:scale-95 transition-all"
+                className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-98 transition"
               >
-                <i className="fas fa-directions"></i>
+                <Navigation className="w-3.5 h-3.5 text-black" />
                 <span>Open in Google Maps</span>
               </a>
-              <a 
-                href="https://wa.me/916282696352?text=Hello%20Bliss%20Spa%2C%20please%20send%20me%20directions%20to%20your%20BTM%201st%20Stage%20branch." 
-                target="_blank" 
-                rel="noreferrer"
-                className="btn-secondary inline-flex items-center gap-2 bg-[#25d366]/15 hover:bg-[#25d366]/25 border border-[#25d366] text-[#25d366] font-semibold text-sm px-5 py-3 rounded-full transition"
+
+              <button
+                onClick={() => onOpenBooking('Directions & Immediate Arrival', '₹1,999')}
+                className="py-2.5 px-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs transition"
               >
-                <i className="fab fa-whatsapp"></i>
-                <span>WhatsApp (6282696352)</span>
-              </a>
+                Book Arrival
+              </button>
             </div>
           </div>
 
-          {/* Embedded Google Map */}
-          <div className="map-visual-wrap relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 min-h-[380px] lg:min-h-full">
+          {/* Interactive Google Map Embed */}
+          <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-xl h-64 sm:h-[450px] relative bg-[#14221c]">
             <iframe 
-              src="https://maps.google.com/maps?q=12.919902,77.610656&hl=en&z=17&output=embed"
-              className="w-full h-full min-h-[380px] border-0"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.8953761732947!2d77.6084673!3d12.919902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15031b26fa05%3A0x6b402804b46c6eb0!2sBliss%20Spa!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) contrast(90%)' }} 
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              title="Bliss Spa BTM 1st Stage Exact Map Location"
-            ></iframe>
-            <div className="map-badge-overlay absolute top-4 left-4 right-4 sm:right-auto bg-[#0a110e]/92 backdrop-blur-md border border-[#e6c35c]/40 rounded-2xl p-3.5 shadow-xl flex flex-col">
-              <strong className="text-white text-xs sm:text-sm font-serif font-bold flex items-center gap-2">
-                <i className="fas fa-spa text-[#e6c35c]"></i> Bliss Spa &amp; BTM Layout
-              </strong>
-              <span className="text-[0.7rem] sm:text-xs text-slate-300 mt-0.5">
-                No. 63, 16th Main, near Udupi Garden, BTM 1st Stage
-              </span>
+              title="Bliss Spa BTM Layout Google Maps Directions"
+            />
+            <div className="absolute top-3 right-3 bg-[#0a110e]/90 backdrop-blur-md border border-[#e6c35c]/40 text-[#e6c35c] text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
+              📍 BTM 1st Stage
             </div>
           </div>
 
