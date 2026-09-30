@@ -21,7 +21,7 @@ export default function LightboxModal({ item, onClose }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-4xl w-full bg-[#0d1612] border border-[#e6c35c]/35 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl cursor-default max-h-[90dvh] flex flex-col"
+        className="relative max-w-4xl w-full bg-[#0d1612] border border-[#cfa559]/25 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl cursor-default max-h-[90dvh] flex flex-col"
       >
         <button
           type="button"
@@ -41,7 +41,7 @@ export default function LightboxModal({ item, onClose }) {
         </div>
 
         <div className="p-4 sm:p-6 bg-gradient-to-b from-[#131d17] to-[#0a0f0c] border-t border-white/10 overflow-y-auto">
-          <span className="text-[10px] uppercase font-bold tracking-widest text-[#e6c35c] block mb-1">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-[#dfc282] block mb-1">
             Bliss Spa Sanctuary Preview
           </span>
           <h4 className="font-serif text-lg sm:text-2xl font-bold text-white mb-1.5 leading-snug">

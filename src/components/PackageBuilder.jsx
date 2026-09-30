@@ -44,9 +44,7 @@ export default function PackageBuilder({ onOpenBooking }) {
     <section id="calculator" className="relative bg-[#0a110e] border-t border-white/10 py-10 sm:py-20 px-3.5 sm:px-6 lg:px-8">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
-          <span className="inline-block text-[10px] sm:text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
-            Interactive Cost Estimator
-          </span>
+
           <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white mb-2">
             Build Your Custom Spa Ritual
           </h2>
@@ -56,14 +54,14 @@ export default function PackageBuilder({ onOpenBooking }) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
-          
+
           {/* Options Column */}
           <div className="lg:col-span-2 flex flex-col gap-4 sm:gap-6">
-            
+
             {/* 1. Base Therapy */}
             <div className="bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-lg">
               <h4 className="font-serif text-base sm:text-lg font-bold text-white mb-3 flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-[#e6c35c] text-slate-950 text-xs flex items-center justify-center font-bold">1</span>
+                <span className="w-5 h-5 rounded-full bg-[#cfa559] text-[#060f0a] text-xs flex items-center justify-center font-bold">1</span>
                 <span>Select Base Therapy</span>
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -71,17 +69,16 @@ export default function PackageBuilder({ onOpenBooking }) {
                   <div
                     key={opt.name}
                     onClick={() => { setBasePrice(opt.price); setBaseName(opt.name); }}
-                    className={`p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${
-                      baseName === opt.name 
-                        ? 'border-[#e6c35c] bg-[#e6c35c]/15 shadow-[0_0_15px_rgba(230,195,92,0.2)]' 
-                        : 'border-white/10 bg-[#0a110e]/70 hover:border-[#e6c35c]/40'
-                    }`}
+                    className={`p-3 rounded-xl border cursor-pointer transition flex items-center justify-between ${baseName === opt.name
+                        ? 'border-[#cfa559] bg-[#cfa559]/15 shadow-[0_0_12px_rgba(197,160,89,0.18)]'
+                        : 'border-white/10 bg-[#0a110e]/70 hover:border-[#cfa559]/40'
+                      }`}
                   >
                     <div>
                       <strong className="text-white text-xs sm:text-sm block">{opt.name}</strong>
                       <small className="text-[10px] sm:text-xs text-slate-400 font-normal">{opt.desc}</small>
                     </div>
-                    <span className="font-serif text-base font-bold text-[#e6c35c] ml-2 shrink-0">₹{opt.price}</span>
+                    <span className="font-serif text-base font-bold text-[#dfc282] ml-2 shrink-0">₹{opt.price}</span>
                   </div>
                 ))}
               </div>
@@ -90,7 +87,7 @@ export default function PackageBuilder({ onOpenBooking }) {
             {/* 2. Duration */}
             <div className="bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-lg">
               <h4 className="font-serif text-base sm:text-lg font-bold text-white mb-3 flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-[#e6c35c] text-slate-950 text-xs flex items-center justify-center font-bold">2</span>
+                <span className="w-5 h-5 rounded-full bg-[#cfa559] text-[#060f0a] text-xs flex items-center justify-center font-bold">2</span>
                 <span>Choose Duration</span>
               </h4>
               <div className="grid grid-cols-3 gap-1.5 xs:gap-2">
@@ -99,15 +96,14 @@ export default function PackageBuilder({ onOpenBooking }) {
                     key={d.label}
                     type="button"
                     onClick={() => { setDurationPrice(d.extra); setDurationName(d.label); }}
-                    className={`p-2 sm:p-3 min-h-[48px] rounded-xl border text-center cursor-pointer transition active:scale-95 flex flex-col items-center justify-center ${
-                      durationPrice === d.extra 
-                        ? 'border-[#e6c35c] bg-[#e6c35c]/15 font-bold text-white shadow-sm ring-1 ring-[#e6c35c]' 
-                        : 'border-white/10 bg-[#0a110e]/70 text-slate-300 hover:border-[#e6c35c]/40'
-                    }`}
+                    className={`p-2 sm:p-3 min-h-[48px] rounded-xl border text-center cursor-pointer transition active:scale-95 flex flex-col items-center justify-center ${durationPrice === d.extra
+                        ? 'border-[#cfa559] bg-[#cfa559]/15 font-bold text-white shadow-sm ring-1 ring-[#cfa559]'
+                        : 'border-white/10 bg-[#0a110e]/70 text-slate-300 hover:border-[#cfa559]/40'
+                      }`}
                   >
                     <span className="text-[11px] xs:text-xs sm:text-sm font-semibold leading-tight">{d.label.split(' ')[0]} {d.label.split(' ')[1]}</span>
                     {d.extra > 0 ? (
-                      <span className="text-[9px] xs:text-[10px] text-[#e6c35c] font-medium leading-none mt-0.5">+₹{d.extra}</span>
+                      <span className="text-[9px] xs:text-[10px] text-[#dfc282] font-medium leading-none mt-0.5">+₹{d.extra}</span>
                     ) : (
                       <span className="text-[9px] xs:text-[10px] text-slate-400 font-medium leading-none mt-0.5">Base</span>
                     )}
@@ -119,7 +115,7 @@ export default function PackageBuilder({ onOpenBooking }) {
             {/* 3. Add-ons */}
             <div className="bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-lg">
               <h4 className="font-serif text-base sm:text-lg font-bold text-white mb-3 flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-[#e6c35c] text-slate-950 text-xs flex items-center justify-center font-bold">3</span>
+                <span className="w-5 h-5 rounded-full bg-[#cfa559] text-[#060f0a] text-xs flex items-center justify-center font-bold">3</span>
                 <span>Add Signature Accents (Optional)</span>
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -129,22 +125,21 @@ export default function PackageBuilder({ onOpenBooking }) {
                     <div
                       key={addon.id}
                       onClick={() => toggleAddon(addon)}
-                      className={`p-2.5 sm:p-3 min-h-[44px] rounded-xl border cursor-pointer transition active:scale-98 flex items-center justify-between ${
-                        isChecked 
-                          ? 'border-[#e6c35c] bg-[#e6c35c]/15 shadow-sm' 
-                          : 'border-white/10 bg-[#0a110e]/70 hover:border-[#e6c35c]/40'
-                      }`}
+                      className={`p-2.5 sm:p-3 min-h-[44px] rounded-xl border cursor-pointer transition active:scale-98 flex items-center justify-between ${isChecked
+                          ? 'border-[#cfa559] bg-[#cfa559]/15 shadow-sm'
+                          : 'border-white/10 bg-[#0a110e]/70 hover:border-[#cfa559]/40'
+                        }`}
                     >
                       <div className="flex items-center gap-2 min-w-0">
-                        <input 
-                          type="checkbox" 
-                          checked={isChecked} 
-                          onChange={() => {}} 
-                          className="accent-[#e6c35c] w-4 h-4 pointer-events-none shrink-0" 
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => { }}
+                          className="accent-[#cfa559] w-4 h-4 pointer-events-none shrink-0"
                         />
                         <span className="text-xs text-white truncate">{addon.name}</span>
                       </div>
-                      <span className="text-xs font-bold text-[#e6c35c] ml-2 shrink-0">+₹{addon.price}</span>
+                      <span className="text-xs font-bold text-[#dfc282] ml-2 shrink-0">+₹{addon.price}</span>
                     </div>
                   );
                 })}
@@ -154,8 +149,8 @@ export default function PackageBuilder({ onOpenBooking }) {
           </div>
 
           {/* Live Package Summary Card */}
-          <div className="bg-[#14221c] border-2 border-[#e6c35c] rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl lg:sticky lg:top-24">
-            <span className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider block mb-1">
+          <div className="bg-[#14221c] border-2 border-[#cfa559]/70 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl lg:sticky lg:top-24">
+            <span className="text-[10px] font-bold text-[#dfc282] uppercase tracking-wider block mb-1">
               Custom Package Summary
             </span>
             <h4 className="font-serif text-xl sm:text-2xl font-bold text-white mb-4">
@@ -181,7 +176,7 @@ export default function PackageBuilder({ onOpenBooking }) {
 
             <div className="flex items-baseline justify-between mb-5">
               <span className="text-xs text-slate-300 font-semibold uppercase">Total Estimate:</span>
-              <span className="font-serif text-2xl sm:text-3xl font-bold text-[#e6c35c]">
+              <span className="font-serif text-2xl sm:text-3xl font-bold text-[#dfc282]">
                 ₹{grandTotal}
               </span>
             </div>
@@ -189,7 +184,7 @@ export default function PackageBuilder({ onOpenBooking }) {
             <button
               type="button"
               onClick={() => onOpenBooking(`Custom Package: ${baseName} (${durationName})`, `₹${grandTotal}`)}
-              className="w-full min-h-[46px] py-3 px-4 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs sm:text-sm shadow-md active:scale-98 transition flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full min-h-[46px] py-3 px-4 rounded-xl bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-xs sm:text-sm shadow-md hover:brightness-105 active:scale-98 transition flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Confirm Custom Package</span>
               <ArrowRight className="w-3.5 h-3.5" />

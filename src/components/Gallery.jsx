@@ -6,9 +6,7 @@ export default function Gallery({ onOpenLightbox }) {
     <section id="gallery" className="relative bg-[#0d1612] border-t border-white/10 py-10 sm:py-20 px-3.5 sm:px-6 lg:px-8">
       <div className="container max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
-          <span className="inline-block text-[10px] sm:text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
-            Sanctuary &amp; Ambience
-          </span>
+
           <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white mb-2">
             Glimpse of Bliss Spa
           </h2>
@@ -25,11 +23,11 @@ export default function Gallery({ onOpenLightbox }) {
               onClick={() => onOpenLightbox(item)}
               className="relative h-40 xs:h-48 sm:h-72 rounded-xl sm:rounded-3xl overflow-hidden shadow-md border border-white/10 group cursor-pointer active:scale-95 transition-transform"
             >
-              <img 
-                src={item.image} 
-                alt={item.title} 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                loading="lazy" 
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-2.5 xs:p-3 sm:p-5 flex flex-col justify-end">
                 <h5 className="font-serif text-xs xs:text-sm sm:text-lg font-bold text-white mb-0.5 line-clamp-1">{item.title}</h5>

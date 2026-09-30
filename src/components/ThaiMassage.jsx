@@ -6,12 +6,10 @@ export default function ThaiMassage({ onOpenBooking }) {
     <section id="thai-massage" className="relative bg-[#0d1612] border-t border-white/10 py-10 sm:py-20 px-3.5 sm:px-6 lg:px-8">
       <div className="container max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          
+
           {/* Left Text Column */}
           <div>
-            <span className="inline-block text-[10px] sm:text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
-              Ancient Nuad Bo-Rarn
-            </span>
+
             <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white mb-3 leading-tight">
               Authentic Traditional Thai Massage in BTM Layout
             </h2>
@@ -22,7 +20,7 @@ export default function ThaiMassage({ onOpenBooking }) {
             {/* 4 Highlights (1-col on ultra-compact, 2x2 on xs+) */}
             <div className="grid grid-cols-1 xs:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6">
               <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">100% Oil-Free</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Loose cotton robes, zero oils.</p>
@@ -30,7 +28,7 @@ export default function ThaiMassage({ onOpenBooking }) {
               </div>
 
               <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Decompression</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Unlocks tight spine and hips.</p>
@@ -38,7 +36,7 @@ export default function ThaiMassage({ onOpenBooking }) {
               </div>
 
               <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Assisted Yoga</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Deep passive yoga stretches.</p>
@@ -46,7 +44,7 @@ export default function ThaiMassage({ onOpenBooking }) {
               </div>
 
               <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#e6c35c] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Acupressure</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Stimulates energy pathways.</p>
@@ -58,7 +56,7 @@ export default function ThaiMassage({ onOpenBooking }) {
               <button
                 type="button"
                 onClick={() => onOpenBooking('Thai Massage', '₹2,499')}
-                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md active:scale-98 transition"
+                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md hover:brightness-105 active:scale-98 transition"
               >
                 <span>Book Thai Yoga (₹2,499)</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -68,14 +66,14 @@ export default function ThaiMassage({ onOpenBooking }) {
 
           {/* Right Image Feature */}
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-xl h-56 sm:h-[400px]">
-            <img 
-              src="assets/images/thai-massage.jpg" 
-              alt="Traditional Thai Yoga Massage at Bliss Spa BTM Layout" 
-              className="w-full h-full object-cover" 
-              loading="lazy" 
+            <img
+              src="assets/images/thai-massage.jpg"
+              alt="Traditional Thai Yoga Massage at Bliss Spa BTM Layout"
+              className="w-full h-full object-cover"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4 sm:p-6">
-              <div className="bg-[#14221c]/90 backdrop-blur-md border border-[#e6c35c]/30 rounded-xl p-2.5 sm:p-3 text-xs text-slate-200">
+              <div className="bg-[#14221c]/90 backdrop-blur-md border border-[#cfa559]/25 rounded-xl p-2.5 sm:p-3 text-xs text-slate-200">
                 ⭐ <strong className="text-white">Rated #1</strong> for desk workers &amp; runners in BTM 1st Stage
               </div>
             </div>

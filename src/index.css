@@ -11,9 +11,10 @@
   --bg-surface: #14221c;
   --bg-surface-hover: #1b2f27;
   
-  --gold-primary: #e6c35c;
-  --gold-light: #fff2cc;
-  --gold-dark: #b89128;
+  --gold-primary: #cfa559;
+  --gold-light: #e8d4a2;
+  --gold-dark: #9a752b;
+  --gold-gradient: linear-gradient(135deg, #dfc282 0%, #cfa559 50%, #b38838 100%);
   
   --emerald-accent: #2e5344;
   --emerald-light: #52836f;
@@ -27,12 +28,31 @@
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+@layer components {
+  /* Eye-Friendly Luxury Champagne Gold Button (No Strain, WCAG AAA Readable) */
+  .btn-luxury-gold {
+    background-image: linear-gradient(to right, #dfc282, #cfa559, #b38838);
+    color: #060f0a;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(197, 160, 89, 0.22);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-luxury-gold:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 6px 22px rgba(197, 160, 89, 0.32);
+  }
+  .btn-luxury-gold:active {
+    transform: scale(0.98);
+  }
+}
+
 html {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color-scheme: dark;
   background-color: #050807;
   color: #ffffff;
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
@@ -68,7 +88,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: radial-gradient(rgba(230, 195, 92, 0.035) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(207, 165, 89, 0.025) 1px, transparent 1px);
   background-size: 32px 32px;
   pointer-events: none;
   z-index: 99999;
@@ -108,15 +128,15 @@ html.lenis body {
 @keyframes breathCircleAnimation {
   0% {
     transform: scale(0.85);
-    box-shadow: 0 0 20px rgba(230, 195, 92, 0.2);
+    box-shadow: 0 0 20px rgba(207, 165, 89, 0.15);
   }
   50% {
     transform: scale(1.18);
-    box-shadow: 0 0 50px rgba(230, 195, 92, 0.6);
+    box-shadow: 0 0 40px rgba(207, 165, 89, 0.35);
   }
   100% {
     transform: scale(0.85);
-    box-shadow: 0 0 20px rgba(230, 195, 92, 0.2);
+    box-shadow: 0 0 20px rgba(207, 165, 89, 0.15);
   }
 }
 

@@ -74,7 +74,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#060a08] text-slate-100 font-sans selection:bg-[#e6c35c] selection:text-black">
+    <div className="min-h-screen bg-[#060a08] text-slate-100 font-sans selection:bg-[#cfa559] selection:text-[#060f0a]">
       {/* Top Notice Banner */}
       <TopBanner />
 

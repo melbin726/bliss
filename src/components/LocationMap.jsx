@@ -10,7 +10,7 @@ export default function LocationMap({ onOpenBooking }) {
           {/* Location Information Card */}
           <div className="bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl flex flex-col justify-between">
             <div>
-              <span className="inline-block text-[10px] sm:text-xs font-bold text-[#e6c35c] tracking-widest uppercase mb-1">
+              <span className="inline-block text-[10px] sm:text-xs font-bold text-[#dfc282] tracking-widest uppercase mb-1">
                 Directions &amp; Contact
               </span>
               <h3 className="font-serif text-xl sm:text-3xl font-bold text-white mb-1.5">
@@ -22,11 +22,11 @@ export default function LocationMap({ onOpenBooking }) {
 
               <div className="space-y-3 mb-5">
                 <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 text-[#dfc282] flex items-center justify-center shrink-0">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <h6 className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider">Address</h6>
+                    <h6 className="text-[10px] font-bold text-[#dfc282] uppercase tracking-wider">Address</h6>
                     <p className="text-xs sm:text-sm text-slate-100 font-medium leading-snug mt-0.5">
                       No. 63, 1st Floor, B-Block, 16th Main, 8th Cross Road, near Udupi Garden, BTM 1st Stage, Bengaluru 560029.
                     </p>
@@ -34,13 +34,13 @@ export default function LocationMap({ onOpenBooking }) {
                 </div>
 
                 <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 text-[#dfc282] flex items-center justify-center shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <h6 className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider">Phone Numbers</h6>
+                    <h6 className="text-[10px] font-bold text-[#dfc282] uppercase tracking-wider">Phone Numbers</h6>
                     <p className="text-xs sm:text-sm leading-snug mt-0.5 space-x-2">
-                      <a href="tel:09945264342" className="text-[#e6c35c] font-bold hover:underline">099452 64342</a>
+                      <a href="tel:09945264342" className="text-[#dfc282] font-bold hover:underline">099452 64342</a>
                       <span className="text-white/30">/</span>
                       <a href="tel:08095266198" className="text-white font-bold hover:underline">080 9526 6198</a>
                     </p>
@@ -48,11 +48,11 @@ export default function LocationMap({ onOpenBooking }) {
                 </div>
 
                 <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#e6c35c]/15 text-[#e6c35c] flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 text-[#dfc282] flex items-center justify-center shrink-0">
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <h6 className="text-[10px] font-bold text-[#e6c35c] uppercase tracking-wider">Operating Hours</h6>
+                    <h6 className="text-[10px] font-bold text-[#dfc282] uppercase tracking-wider">Operating Hours</h6>
                     <p className="text-xs text-slate-200 mt-0.5">
                       Mon – Sun: 10:00 AM – 10:00 PM (All 7 Days Open)
                     </p>
@@ -61,8 +61,8 @@ export default function LocationMap({ onOpenBooking }) {
               </div>
 
               {/* Landmark Cues */}
-              <div className="bg-[#0a110e]/70 border border-[#e6c35c]/25 rounded-xl p-3 mb-5">
-                <span className="text-[10px] uppercase font-bold text-[#e6c35c] block mb-1">
+              <div className="bg-[#0a110e]/70 border border-[#cfa559]/25 rounded-xl p-3 mb-5">
+                <span className="text-[10px] uppercase font-bold text-[#dfc282] block mb-1">
                   Nearby Landmarks
                 </span>
                 <p className="text-[11px] text-slate-300 leading-relaxed">
@@ -76,9 +76,9 @@ export default function LocationMap({ onOpenBooking }) {
                 href="https://maps.google.com/?q=12.919902,77.610656" 
                 target="_blank" 
                 rel="noreferrer"
-                className="flex-1 min-h-[44px] py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#fff3d1] via-[#e6c35c] to-[#b89128] text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-98 transition"
+                className="flex-1 min-h-[44px] py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-xs flex items-center justify-center gap-1.5 shadow-md hover:brightness-105 active:scale-98 transition"
               >
-                <Navigation className="w-3.5 h-3.5 text-black shrink-0" />
+                <Navigation className="w-3.5 h-3.5 text-[#060f0a] shrink-0" />
                 <span>Open in Google Maps</span>
               </a>
 
@@ -104,7 +104,7 @@ export default function LocationMap({ onOpenBooking }) {
               referrerPolicy="no-referrer-when-downgrade"
               title="Bliss Spa BTM Layout Google Maps Directions"
             />
-            <div className="absolute top-3 right-3 bg-[#0a110e]/90 backdrop-blur-md border border-[#e6c35c]/40 text-[#e6c35c] text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
+            <div className="absolute top-3 right-3 bg-[#0a110e]/90 backdrop-blur-md border border-[#cfa559]/35 text-[#dfc282] text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
               📍 BTM 1st Stage
             </div>
           </div>
