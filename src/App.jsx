@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 
 import { useZenAudio } from './hooks/useZenAudio';
+import { useScrollReveal } from './hooks/useScrollReveal';
 
+import ScrollProgressBar from './components/ScrollProgressBar';
 import TopBanner from './components/TopBanner';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -50,6 +52,9 @@ export default function App() {
   // Zen 432Hz ambient audio hook
   const { isPlaying: isZenPlaying, toggleAudio: toggleZenAudio } = useZenAudio();
 
+  // Mobile and desktop luxury scroll reveal observer
+  useScrollReveal();
+
   // Booking Modal State
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedService, setSelectedService] = useState('');
@@ -75,6 +80,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#060a08] text-slate-100 font-sans selection:bg-[#cfa559] selection:text-[#060f0a]">
+      {/* Luxury Golden Scroll Depth Tracker */}
+      <ScrollProgressBar />
+
       {/* Top Notice Banner */}
       <TopBanner />
 

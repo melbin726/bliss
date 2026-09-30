@@ -13,9 +13,11 @@ export default function TopBanner() {
         </span>
       </div>
       <div className="text-[0.78rem] opacity-90 flex items-center gap-4">
-        <span className="flex items-center gap-1.5">
+        <span className="flex items-center gap-1.5 flex-nowrap whitespace-nowrap">
           <i className="fas fa-phone-alt text-[#dfc282] text-xs"></i> 
-          <strong className="text-white">099452 64342</strong> / <strong className="text-white">080 9526 6198</strong>
+          <strong className="text-white whitespace-nowrap font-mono">099452 64342</strong> 
+          <span className="text-white/40">/</span>
+          <strong className="text-white whitespace-nowrap font-mono">080 9526 6198</strong>
         </span>
         <span className="flex items-center gap-1.5">
           <i className="far fa-clock text-[#dfc282] text-xs"></i> 10:00 AM - 10:00 PM

@@ -8,7 +8,7 @@ export default function AyurvedaRituals({ onOpenBooking }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
           {/* Left Image Column */}
-          <div className="order-2 lg:order-1 relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-white/10 h-56 sm:h-[460px]">
+          <div className="reveal-left order-2 lg:order-1 relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-white/10 h-56 sm:h-[460px]">
             <img
               src="assets/images/ayurvedic-shirodhara.jpg"
               alt="Ayurvedic Abhyanga & Shirodhara at Bliss Spa BTM Layout"
@@ -29,18 +29,18 @@ export default function AyurvedaRituals({ onOpenBooking }) {
           </div>
 
           {/* Right Text Column */}
-          <div className="order-1 lg:order-2">
+          <div className="reveal-right stagger-1 order-1 lg:order-2">
 
-            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white mb-3 leading-tight">
+            <h2 className="font-serif text-xl sm:text-3xl lg:text-4xl font-bold text-white mb-2.5 sm:mb-3 leading-tight">
               Holistic Ayurvedic Spa &amp; Abhyanga in Bengaluru
             </h2>
-            <p className="text-xs sm:text-base text-slate-300 leading-relaxed mb-5">
+            <p className="text-xs sm:text-sm lg:text-base text-slate-300 leading-relaxed mb-4 sm:mb-5">
               At Bliss Spa BTM Layout, our certified Ayurvedic practitioners use warm classical herbal oils and synchronized strokes over 107 Marma energy nodes for deep physiological restoration.
             </p>
 
-            {/* 4 Highlights (1-col on ultra-compact, 2x2 on xs+) */}
+            {/* 4 Highlights */}
             <div className="grid grid-cols-1 xs:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6">
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
+              <div className="reveal-scale stagger-1 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <Leaf className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Abhyanga</h4>
@@ -48,7 +48,7 @@ export default function AyurvedaRituals({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
+              <div className="reveal-scale stagger-2 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <Leaf className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Marma Healing</h4>
@@ -56,7 +56,7 @@ export default function AyurvedaRituals({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
+              <div className="reveal-scale stagger-3 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <Leaf className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Natural Detox</h4>
@@ -64,7 +64,7 @@ export default function AyurvedaRituals({ onOpenBooking }) {
                 </div>
               </div>
 
-              <div className="bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
+              <div className="reveal-scale stagger-4 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
                 <Leaf className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-bold text-white">Shirodhara</h4>
@@ -77,7 +77,7 @@ export default function AyurvedaRituals({ onOpenBooking }) {
               <button
                 type="button"
                 onClick={() => onOpenBooking('Ayurveda Spa Massage', '₹2,799')}
-                className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md hover:brightness-105 active:scale-98 transition"
+                className="w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-[0_2px_10px_rgba(197,160,89,0.22)] hover:brightness-105 active:scale-95 transition-all cursor-pointer"
               >
                 <span>Book Ayurveda Spa (₹2,799)</span>
                 <ArrowRight className="w-3.5 h-3.5" />

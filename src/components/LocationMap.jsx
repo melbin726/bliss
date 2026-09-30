@@ -8,15 +8,15 @@ export default function LocationMap({ onOpenBooking }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-stretch">
           
           {/* Location Information Card */}
-          <div className="bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl flex flex-col justify-between">
+          <div className="reveal-left bg-[#14221c] border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xl flex flex-col justify-between">
             <div>
               <span className="inline-block text-[10px] sm:text-xs font-bold text-[#dfc282] tracking-widest uppercase mb-1">
                 Directions &amp; Contact
               </span>
-              <h3 className="font-serif text-xl sm:text-3xl font-bold text-white mb-1.5">
+              <h3 className="font-serif text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1.5">
                 BLISS SPA &amp; BTM LAYOUT
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
+              <p className="text-[11px] sm:text-sm text-slate-300 leading-relaxed mb-5">
                 Premium wellness destination near Udupi Garden signal in BTM 1st Stage.
               </p>
 
@@ -37,12 +37,12 @@ export default function LocationMap({ onOpenBooking }) {
                   <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 text-[#dfc282] flex items-center justify-center shrink-0">
                     <Phone className="w-4 h-4" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h6 className="text-[10px] font-bold text-[#dfc282] uppercase tracking-wider">Phone Numbers</h6>
-                    <p className="text-xs sm:text-sm leading-snug mt-0.5 space-x-2">
-                      <a href="tel:09945264342" className="text-[#dfc282] font-bold hover:underline">099452 64342</a>
+                    <p className="text-xs sm:text-sm leading-snug mt-0.5 flex items-center gap-1.5 flex-nowrap whitespace-nowrap">
+                      <a href="tel:09945264342" className="text-[#dfc282] font-bold hover:underline whitespace-nowrap">099452 64342</a>
                       <span className="text-white/30">/</span>
-                      <a href="tel:08095266198" className="text-white font-bold hover:underline">080 9526 6198</a>
+                      <a href="tel:08095266198" className="text-white font-bold hover:underline whitespace-nowrap">080 9526 6198</a>
                     </p>
                   </div>
                 </div>
@@ -76,7 +76,7 @@ export default function LocationMap({ onOpenBooking }) {
                 href="https://maps.google.com/?q=12.919902,77.610656" 
                 target="_blank" 
                 rel="noreferrer"
-                className="flex-1 min-h-[44px] py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-xs flex items-center justify-center gap-1.5 shadow-md hover:brightness-105 active:scale-98 transition"
+                className="flex-1 py-2.5 px-4 rounded-full bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-semibold text-xs flex items-center justify-center gap-1.5 shadow-md hover:brightness-105 active:scale-95 transition"
               >
                 <Navigation className="w-3.5 h-3.5 text-[#060f0a] shrink-0" />
                 <span>Open in Google Maps</span>
@@ -85,7 +85,7 @@ export default function LocationMap({ onOpenBooking }) {
               <button
                 type="button"
                 onClick={() => onOpenBooking('Directions & Immediate Arrival', '₹1,999')}
-                className="min-h-[44px] py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs active:scale-98 transition flex items-center justify-center"
+                className="py-2.5 px-4 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-xs active:scale-95 transition flex items-center justify-center"
               >
                 Book Arrival
               </button>
@@ -93,7 +93,7 @@ export default function LocationMap({ onOpenBooking }) {
           </div>
 
           {/* Interactive Google Map Embed */}
-          <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-xl h-64 sm:h-[450px] relative bg-[#14221c]">
+          <div className="reveal-right stagger-1 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-xl h-64 sm:h-[450px] relative bg-[#14221c]">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.8953761732947!2d77.6084673!3d12.919902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15031b26fa05%3A0x6b402804b46c6eb0!2sBliss%20Spa!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
               width="100%" 

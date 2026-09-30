@@ -16,6 +16,7 @@ import {
   Settings, 
   ExternalLink 
 } from 'lucide-react';
+import CustomDropdown from './CustomDropdown';
 
 export default function AdminDashboardModal({ isOpen, onClose }) {
   const [bookings, setBookings] = useState([]);
@@ -359,17 +360,18 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
                 inputMode="tel"
                 className="w-full min-h-[40px] bg-[#0e1713] border border-white/15 rounded-xl px-3 py-2 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282]"
               />
-              <select
+              <CustomDropdown
                 value={walkinService}
-                onChange={(e) => setWalkinService(e.target.value)}
-                className="w-full min-h-[40px] bg-[#0e1713] border border-white/15 rounded-xl px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-[#dfc282]"
-              >
-                <option value="Swedish Body Therapy">Swedish Body Therapy</option>
-                <option value="Deep Tissue Muscle Relief">Deep Tissue Muscle Relief</option>
-                <option value="Traditional Thai Yoga Massage">Traditional Thai Yoga</option>
-                <option value="Ayurvedic Abhyanga">Ayurvedic Abhyanga</option>
-                <option value="Aromatherapy Destress">Aromatherapy Destress</option>
-              </select>
+                onChange={setWalkinService}
+                options={[
+                  { value: 'Swedish Body Therapy', label: 'Swedish Body Therapy', badge: '₹1,999' },
+                  { value: 'Deep Tissue Muscle Relief', label: 'Deep Tissue Muscle Relief', badge: '₹2,299' },
+                  { value: 'Traditional Thai Yoga Massage', label: 'Traditional Thai Yoga', badge: '₹2,499' },
+                  { value: 'Ayurvedic Abhyanga', label: 'Ayurvedic Abhyanga', badge: '₹2,799' },
+                  { value: 'Aromatherapy Destress', label: 'Aromatherapy Destress', badge: '₹2,199' },
+                ]}
+                placeholder="Select Service"
+              />
             </div>
             <div className="flex justify-end gap-2">
               <button
