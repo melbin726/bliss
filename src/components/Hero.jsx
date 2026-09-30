@@ -19,7 +19,7 @@ export default function Hero({ onOpenBooking }) {
         <img 
           src="assets/images/hero-massage.jpg" 
           alt="Relaxing Spa Massage at Bliss Spa BTM Layout Bangalore" 
-          className="w-full h-full object-cover object-center scale-105"
+          className="w-full h-full object-cover object-[center_30%] sm:object-center scale-100 sm:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050807]/94 via-[#0a110e]/88 to-[#050807]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#e6c35c]/10 via-transparent to-transparent pointer-events-none" />
