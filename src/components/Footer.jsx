@@ -19,14 +19,14 @@ export default function Footer({ onOpenAdmin, onOpenBooking }) {
           {/* Col 1: Brand & Philosophy */}
           <div>
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#d4af37] to-[#8c7322] flex items-center justify-center text-black font-serif font-black text-base shadow-md">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#cfa559] to-[#8c6b22] flex items-center justify-center text-[#060f0a] font-serif font-black text-base shadow-md">
                 B
               </div>
               <div>
                 <span className="font-serif text-lg sm:text-xl font-bold tracking-wide text-white block">
                   Bliss Spa
                 </span>
-                <span className="text-[9px] tracking-widest text-[#e6c35c] uppercase font-semibold block">
+                <span className="text-[9px] tracking-widest text-[#dfc282] uppercase font-semibold block">
                   BTM 1st Stage • Bengaluru
                 </span>
               </div>
@@ -37,7 +37,7 @@ export default function Footer({ onOpenAdmin, onOpenBooking }) {
             </p>
 
             <div className="flex items-center gap-2 text-[11px] text-slate-300 bg-white/5 border border-white/10 rounded-xl p-2.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#e6c35c] shrink-0" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
               <span>Certified Therapists • Strict Hygiene</span>
             </div>
           </div>
@@ -49,38 +49,38 @@ export default function Footer({ onOpenAdmin, onOpenBooking }) {
             </h4>
             <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2 text-xs">
               <li>
-                <a href="#therapies" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#therapies" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Aroma Ritual
                 </a>
               </li>
               <li>
-                <a href="#thai-massage" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#thai-massage" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Thai Yoga
                 </a>
               </li>
               <li>
-                <a href="#therapies" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#therapies" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Deep Tissue
                 </a>
               </li>
               <li>
-                <a href="#ayurveda" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#ayurveda" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Ayurveda
                 </a>
               </li>
               <li>
-                <a href="#therapies" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#therapies" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Hot Stone
                 </a>
               </li>
               <li>
-                <a href="#therapies" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#therapies" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Couples Suite
                 </a>
               </li>
@@ -94,38 +94,38 @@ export default function Footer({ onOpenAdmin, onOpenBooking }) {
             </h4>
             <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2 text-xs">
               <li>
-                <a href="#matcher" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#matcher" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   De-Stress Matcher
                 </a>
               </li>
               <li>
-                <a href="#guide" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#guide" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Comparison Guide
                 </a>
               </li>
               <li>
-                <a href="#calculator" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#calculator" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Package Builder
                 </a>
               </li>
               <li>
-                <a href="#gallery" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#gallery" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Photo Gallery
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#faq" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   FAQ
                 </a>
               </li>
               <li>
-                <a href="#location" className="hover:text-[#e6c35c] transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-3 h-3 text-[#e6c35c]" />
+                <a href="#location" className="hover:text-[#dfc282] transition-colors flex items-center gap-1">
+                  <ChevronRight className="w-3 h-3 text-[#dfc282]" />
                   Directions
                 </a>
               </li>
@@ -149,13 +149,13 @@ export default function Footer({ onOpenAdmin, onOpenBooking }) {
                 <span className="text-slate-200">10:00 AM – 10:00 PM (Daily)</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#e6c35c] shrink-0" />
+                <Phone className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
                 <div className="space-x-1.5">
-                  <a href="tel:09945264342" className="text-white hover:text-[#e6c35c] font-semibold">
+                  <a href="tel:09945264342" className="text-white hover:text-[#dfc282] font-semibold">
                     099452 64342
                   </a>
                   <span>/</span>
-                  <a href="tel:08095266198" className="text-white hover:text-[#e6c35c] font-semibold">
+                  <a href="tel:08095266198" className="text-white hover:text-[#dfc282] font-semibold">
                     080 9526 6198
                   </a>
                 </div>
@@ -165,7 +165,7 @@ export default function Footer({ onOpenAdmin, onOpenBooking }) {
             <div className="mt-4 flex flex-col gap-2">
               <button
                 onClick={() => onOpenBooking()}
-                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b38e28] text-black font-semibold text-xs text-center shadow"
+                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-semibold text-xs text-center shadow hover:brightness-105 transition"
               >
                 Instant Appointment
               </button>
@@ -174,7 +174,7 @@ export default function Footer({ onOpenAdmin, onOpenBooking }) {
                 onClick={onOpenAdmin}
                 className="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[10px] text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5"
               >
-                <Lock className="w-3 h-3 text-[#e6c35c]" />
+                <Lock className="w-3 h-3 text-[#dfc282]" />
                 Staff Front Desk Log
               </button>
             </div>

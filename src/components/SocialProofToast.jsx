@@ -42,16 +42,16 @@ export default function SocialProofToast({ onBookTherapy }) {
   const current = mockProofs[currentIndex];
 
   return (
-    <div className="fixed bottom-20 left-4 z-30 hidden sm:flex items-center gap-3 bg-[#0d1612]/95 border border-[#e6c35c]/30 rounded-2xl p-3.5 shadow-2xl backdrop-blur-md max-w-sm animate-fade-in transition-all">
-      <div className="w-10 h-10 rounded-full bg-[#e6c35c]/15 border border-[#e6c35c]/30 flex items-center justify-center shrink-0">
-        <Sparkles className="w-4 h-4 text-[#e6c35c]" />
+    <div className="fixed bottom-20 left-4 z-30 hidden sm:flex items-center gap-3 bg-[#0d1612]/95 border border-[#cfa559]/25 rounded-2xl p-3.5 shadow-2xl backdrop-blur-md max-w-sm animate-fade-in transition-all">
+      <div className="w-10 h-10 rounded-full bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+        <Sparkles className="w-4 h-4 text-[#dfc282]" />
       </div>
 
       <div className="text-left flex-1 min-w-0 pr-2">
         <p className="text-xs font-semibold text-white truncate">
           {current.name} <span className="text-[10px] text-slate-400 font-normal">from {current.location}</span>
         </p>
-        <p className="text-[11px] text-[#e6c35c] truncate">
+        <p className="text-[11px] text-[#dfc282] truncate">
           Reserved {current.therapy}
         </p>
         <span className="text-[9px] text-slate-400 font-mono">

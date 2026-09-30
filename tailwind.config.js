@@ -12,10 +12,10 @@ export default {
       },
       colors: {
         gold: {
-          DEFAULT: '#e6c35c',
-          light: '#fff2cc',
-          dark: '#b89128',
-          glow: 'rgba(230, 195, 92, 0.35)'
+          DEFAULT: '#cfa559',
+          light: '#e8d4a2',
+          dark: '#9a752b',
+          glow: 'rgba(207, 165, 89, 0.22)'
         },
         spa: {
           darkest: '#050807',
@@ -31,9 +31,9 @@ export default {
         sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
       },
       boxShadow: {
-        'gold-sm': '0 4px 18px rgba(230, 195, 92, 0.35)',
-        'gold-md': '0 8px 30px rgba(230, 195, 92, 0.45)',
-        'gold-lg': '0 12px 40px rgba(230, 195, 92, 0.65)',
+        'gold-sm': '0 4px 16px rgba(207, 165, 89, 0.20)',
+        'gold-md': '0 8px 24px rgba(207, 165, 89, 0.28)',
+        'gold-lg': '0 12px 32px rgba(207, 165, 89, 0.38)',
         'spa-card': '0 20px 50px rgba(0, 0, 0, 0.7)'
       }
     },
