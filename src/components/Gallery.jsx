@@ -5,23 +5,22 @@ export default function Gallery({ onOpenLightbox }) {
   return (
     <section id="gallery" className="relative bg-[#0d1612] border-t border-white/10 py-10 sm:py-20 px-3.5 sm:px-6 lg:px-8">
       <div className="container max-w-7xl mx-auto">
-        <div className="text-center mb-8 sm:mb-12">
-
-          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white mb-2">
+        <div className="reveal text-center mb-6 sm:mb-12">
+          <h2 className="font-serif text-xl sm:text-3xl lg:text-4xl font-bold text-white mb-1.5 sm:mb-2">
             Glimpse of Bliss Spa
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+          <p className="text-[11px] sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
             Private candlelit suites in BTM 1st Stage. Clean, calm, and sound-buffered.
           </p>
         </div>
 
         {/* 2-Column Mosaic on Mobile, 3-Column on Desktop */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-6">
-          {galleryData.map((item) => (
+          {galleryData.map((item, idx) => (
             <div
               key={item.id}
               onClick={() => onOpenLightbox(item)}
-              className="relative h-40 xs:h-48 sm:h-72 rounded-xl sm:rounded-3xl overflow-hidden shadow-md border border-white/10 group cursor-pointer active:scale-95 transition-transform"
+              className={`reveal-scale stagger-${(idx % 6) + 1} relative h-40 xs:h-48 sm:h-72 rounded-xl sm:rounded-3xl overflow-hidden shadow-md border border-white/10 group cursor-pointer active:scale-95 transition-transform`}
             >
               <img
                 src={item.image}

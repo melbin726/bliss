@@ -17,6 +17,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { therapiesData } from '../data/therapiesData';
+import CustomDropdown from './CustomDropdown';
 
 export const SPA_LINES = [
   {
@@ -219,10 +220,26 @@ export default function BookingModal({
     onClose();
   };
 
+  const serviceDropdownOptions = [
+    ...therapiesData.map((t) => ({
+      value: t.name || t.title,
+      label: t.name || t.title,
+      badge: t.price,
+      subtext: `${t.duration || '60 Mins'} • En-suite steam included`
+    })),
+    { value: 'Custom Spa Package', label: 'Custom Spa Package Builder', badge: 'Flexible', subtext: 'Choose your own therapies & duration' },
+    { value: 'Quick Consultation / Reception Guidance', label: 'Quick Consultation (Guide Me on Arrival)', badge: 'Free', subtext: 'Decide treatment at front desk' }
+  ];
+
+  const timeDropdownOptions = timeSlots.map((slot) => ({
+    value: slot,
+    label: slot
+  }));
+
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 xs:p-2 sm:p-4 overflow-y-auto bg-black/85 backdrop-blur-md animate-fade-in">
       <div 
-        className="relative w-full max-w-lg bg-[#0e1713] border-t sm:border border-[#cfa559]/25 rounded-t-3xl sm:rounded-3xl p-4.5 xs:p-5 sm:p-7 shadow-2xl overflow-y-auto max-h-[92dvh] sm:max-h-[90vh] pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:pb-7"
+        className="relative w-full max-w-lg bg-[#0e1713] border-t sm:border border-[#cfa559]/25 rounded-t-3xl sm:rounded-3xl p-4 xs:p-5 sm:p-7 shadow-2xl overflow-y-auto max-h-[92dvh] sm:max-h-[90vh] pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:pb-7"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Mobile Pull Indicator Pill */}
@@ -243,45 +260,36 @@ export default function BookingModal({
 
         {!isSubmitted ? (
           <div>
-            <div className="mb-4 sm:mb-5 pr-8">
+            <div className="mb-3.5 sm:mb-5 pr-8">
               <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-[#dfc282] tracking-widest uppercase mb-1">
                 <Sparkles className="w-3 h-3" />
                 Reserve Sanctuary Session
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-white leading-tight">
+              <h3 className="font-serif text-lg sm:text-2xl font-bold text-white leading-tight">
                 Book Your Therapy
               </h3>
-              <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5">
-                Pay ₹0 advance. Instant confirmation to spa lines <span className="text-[#dfc282] font-semibold">099452 64342 / 080 9526 6198</span>.
+              <p className="text-[10.5px] xs:text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
+                Pay ₹0 advance. Instant confirmation to spa lines{' '}
+                <span className="whitespace-nowrap inline-flex items-center gap-1 text-[#dfc282] font-semibold">
+                  <span>099452 64342</span>
+                  <span className="text-white/40">/</span>
+                  <span>080 9526 6198</span>
+                </span>.
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-3.5">
-              {/* Select Service */}
+              {/* Select Service with Custom Luxury Dropdown */}
               <div>
-                <label className="block text-[11px] font-semibold text-slate-300 mb-1">
-                  Treatment
-                </label>
-                <select
+                <CustomDropdown
+                  label="Treatment"
                   value={service}
-                  onChange={(e) => setService(e.target.value)}
-                  className="w-full min-h-[44px] bg-[#17251d] border border-white/15 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#dfc282] transition-colors"
-                >
-                  {therapiesData.map((t) => {
-                    const title = t.name || t.title;
-                    return (
-                      <option key={t.id} value={title} className="bg-[#121c16] text-white">
-                        {title} ({t.price})
-                      </option>
-                    );
-                  })}
-                  <option value="Custom Spa Package" className="bg-[#121c16] text-white">
-                    Custom Spa Package Builder
-                  </option>
-                  <option value="Quick Consultation / Reception Guidance" className="bg-[#121c16] text-white">
-                    Quick Consultation (Guide Me on Arrival)
-                  </option>
-                </select>
+                  onChange={setService}
+                  options={serviceDropdownOptions}
+                  placeholder="Select a treatment"
+                  icon={Sparkles}
+                  required
+                />
               </div>
 
               {/* Date & Time Grid */}
@@ -295,25 +303,20 @@ export default function BookingModal({
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     required
-                    className="w-full min-h-[44px] bg-[#17251d] border border-white/15 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-[#dfc282] transition-colors"
+                    className="w-full min-h-[42px] bg-[#14221c] border border-white/15 rounded-xl px-3 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-[#dfc282] transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-semibold text-slate-300 mb-1">
-                    Time Slot
-                  </label>
-                  <select
+                  <CustomDropdown
+                    label="Time Slot"
                     value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    className="w-full min-h-[44px] bg-[#17251d] border border-white/15 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-[#dfc282] transition-colors"
-                  >
-                    {timeSlots.map((slot) => (
-                      <option key={slot} value={slot} className="bg-[#121c16] text-white">
-                        {slot}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={setTime}
+                    options={timeDropdownOptions}
+                    placeholder="Select time"
+                    icon={Clock}
+                    required
+                  />
                 </div>
               </div>
 
@@ -332,9 +335,9 @@ export default function BookingModal({
                       required
                       autoComplete="name"
                       autoCapitalize="words"
-                      className="w-full min-h-[44px] bg-[#17251d] border border-white/15 rounded-xl pl-9 pr-3 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] transition-colors"
+                      className="w-full min-h-[42px] bg-[#14221c] border border-white/15 rounded-xl pl-9 pr-3 py-2 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] transition-colors"
                     />
-                    <User className="w-4 h-4 text-slate-400 absolute left-3 top-3.5" />
+                    <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                   </div>
                 </div>
 
@@ -351,9 +354,9 @@ export default function BookingModal({
                       required
                       inputMode="tel"
                       autoComplete="tel"
-                      className="w-full min-h-[44px] bg-[#17251d] border border-white/15 rounded-xl pl-9 pr-3 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] transition-colors"
+                      className="w-full min-h-[42px] bg-[#14221c] border border-white/15 rounded-xl pl-9 pr-3 py-2 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] transition-colors"
                     />
-                    <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-3.5" />
+                    <Phone className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                   </div>
                 </div>
               </div>
@@ -400,10 +403,10 @@ export default function BookingModal({
                         }`}
                       >
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] text-slate-400 uppercase font-semibold">{line.label}</span>
+                          <span className="text-[10px] text-slate-400 uppercase font-semibold whitespace-nowrap">{line.label}</span>
                           {selectedLineIndex === idx && <span className="w-2 h-2 rounded-full bg-[#dfc282]" />}
                         </div>
-                        <span className="font-mono font-bold text-white mt-0.5">{line.display}</span>
+                        <span className="font-mono font-bold text-white mt-0.5 whitespace-nowrap">{line.display}</span>
                       </button>
                     ))}
                   </div>
@@ -458,7 +461,7 @@ export default function BookingModal({
               {/* Submit CTA */}
               <button
                 type="submit"
-                className="w-full min-h-[48px] py-3.5 px-5 rounded-xl bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-sm tracking-wide shadow-md hover:brightness-105 active:scale-98 transition flex items-center justify-center gap-1.5 cursor-pointer mt-2"
+                className="w-full py-2.5 sm:py-3 px-5 rounded-full bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-semibold text-xs sm:text-sm tracking-wide shadow-[0_2px_12px_rgba(197,160,89,0.22)] hover:brightness-105 active:scale-95 transition flex items-center justify-center gap-1.5 cursor-pointer mt-2"
               >
                 <span>Confirm Reservation (₹0 Advance)</span>
                 <Sparkles className="w-4 h-4 text-[#060f0a] shrink-0" />
@@ -527,13 +530,13 @@ export default function BookingModal({
 
               {/* Reception Desk Dispatch Block */}
               <div className="bg-black/40 border border-white/10 rounded-xl p-3 mb-2.5">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-[#dfc282]" />
-                    <span className="text-xs font-bold text-white">Reception Desk:</span>
-                    <span className="text-xs font-mono text-[#dfc282] font-semibold">099452 64342</span>
+                <div className="flex items-center justify-between mb-2 gap-2">
+                  <div className="flex items-center gap-1.5 flex-nowrap whitespace-nowrap min-w-0">
+                    <Phone className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
+                    <span className="text-xs font-bold text-white whitespace-nowrap">Reception Desk:</span>
+                    <span className="text-xs font-mono text-[#dfc282] font-semibold whitespace-nowrap">099452 64342</span>
                   </div>
-                  <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-semibold">
+                  <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-semibold whitespace-nowrap shrink-0">
                     Front Desk
                   </span>
                 </div>
@@ -541,7 +544,7 @@ export default function BookingModal({
                   <button
                     type="button"
                     onClick={() => handleSendSMS('9945264342')}
-                    className="w-full py-2.5 px-2.5 rounded-lg bg-white/10 hover:bg-white/15 text-white font-semibold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer border border-white/10"
+                    className="w-full py-2.5 px-2.5 rounded-lg bg-white/10 hover:bg-white/15 text-white font-semibold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer border border-white/10 whitespace-nowrap"
                     title="Open SMS App for 099452 64342"
                   >
                     <MessageSquare className="w-3.5 h-3.5 text-[#dfc282]" />
@@ -550,7 +553,7 @@ export default function BookingModal({
                   <button
                     type="button"
                     onClick={() => handleWhatsAppNotify('919945264342')}
-                    className="w-full py-2.5 px-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-black font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer shadow-[0_2px_8px_rgba(37,211,102,0.2)]"
+                    className="w-full py-2.5 px-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-black font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer shadow-[0_2px_8px_rgba(37,211,102,0.2)] whitespace-nowrap"
                     title="Send WhatsApp to 099452 64342"
                   >
                     <Send className="w-3.5 h-3.5" />
@@ -561,13 +564,13 @@ export default function BookingModal({
 
               {/* Concierge Desk Dispatch Block */}
               <div className="bg-black/40 border border-white/10 rounded-xl p-3 mb-3">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-[#dfc282]" />
-                    <span className="text-xs font-bold text-white">Concierge Desk:</span>
-                    <span className="text-xs font-mono text-[#dfc282] font-semibold">080 9526 6198</span>
+                <div className="flex items-center justify-between mb-2 gap-2">
+                  <div className="flex items-center gap-1.5 flex-nowrap whitespace-nowrap min-w-0">
+                    <Phone className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
+                    <span className="text-xs font-bold text-white whitespace-nowrap">Concierge Desk:</span>
+                    <span className="text-xs font-mono text-[#dfc282] font-semibold whitespace-nowrap">080 9526 6198</span>
                   </div>
-                  <span className="text-[10px] text-[#dfc282] bg-[#cfa559]/10 px-2 py-0.5 rounded border border-[#cfa559]/20 font-semibold">
+                  <span className="text-[10px] text-[#dfc282] bg-[#cfa559]/10 px-2 py-0.5 rounded border border-[#cfa559]/20 font-semibold whitespace-nowrap shrink-0">
                     Direct Line
                   </span>
                 </div>

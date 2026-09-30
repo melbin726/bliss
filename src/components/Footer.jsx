@@ -148,14 +148,14 @@ export default function Footer({ onOpenAdmin, onOpenBooking }) {
                 <Clock className="w-3.5 h-3.5 text-[#e6c35c] shrink-0" />
                 <span className="text-slate-200">10:00 AM – 10:00 PM (Daily)</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 whitespace-nowrap">
                 <Phone className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
-                <div className="space-x-1.5">
-                  <a href="tel:09945264342" className="text-white hover:text-[#dfc282] font-semibold">
+                <div className="flex items-center gap-1.5 flex-nowrap whitespace-nowrap">
+                  <a href="tel:09945264342" className="text-white hover:text-[#dfc282] font-semibold whitespace-nowrap">
                     099452 64342
                   </a>
-                  <span>/</span>
-                  <a href="tel:08095266198" className="text-white hover:text-[#dfc282] font-semibold">
+                  <span className="text-slate-400">/</span>
+                  <a href="tel:08095266198" className="text-white hover:text-[#dfc282] font-semibold whitespace-nowrap">
                     080 9526 6198
                   </a>
                 </div>

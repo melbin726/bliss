@@ -187,3 +187,92 @@ html.lenis body {
 .font-sans {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+/* ============================================================
+   Luxury Mobile & Desktop Scroll Reveal Animations
+   Apple & Five-Star Resort Easing: cubic-bezier(0.16, 1, 0.3, 1)
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95) translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-right.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger entrance delays for card grids */
+.stagger-1 { transition-delay: 50ms; }
+.stagger-2 { transition-delay: 110ms; }
+.stagger-3 { transition-delay: 170ms; }
+.stagger-4 { transition-delay: 230ms; }
+.stagger-5 { transition-delay: 290ms; }
+.stagger-6 { transition-delay: 350ms; }
+
+/* Subtle Ambient Candlelight Shimmer */
+@keyframes ambientShimmer {
+  0%, 100% {
+    opacity: 0.12;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: translateY(-5px) scale(1.03);
+  }
+}
+
+.animate-ambient-shimmer {
+  animation: ambientShimmer 7s ease-in-out infinite;
+}
+
+/* Accessibility: instantly reveal for users requesting reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-scale,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

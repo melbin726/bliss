@@ -313,19 +313,19 @@ export default function Navbar({ onOpenBooking, isZenPlaying, onToggleZen, onTog
           <div className="grid grid-cols-2 gap-2">
             <a 
               href="tel:09945264342" 
-              className="min-h-[44px] bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold py-2 px-1 rounded-full flex items-center justify-center gap-1.5 transition active:scale-98"
+              className="min-h-[42px] bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-[11px] font-semibold py-2 px-1 rounded-full flex items-center justify-center gap-1 transition active:scale-98 whitespace-nowrap"
               title="Call Line 1: 099452 64342"
             >
-              <Phone className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
-              <span>099452 64342</span>
+              <Phone className="w-3 h-3 text-[#dfc282] shrink-0" />
+              <span className="whitespace-nowrap font-mono tracking-tight">099452 64342</span>
             </a>
             <a 
               href="tel:08095266198" 
-              className="min-h-[44px] bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold py-2 px-1 rounded-full flex items-center justify-center gap-1.5 transition active:scale-98"
+              className="min-h-[42px] bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-[11px] font-semibold py-2 px-1 rounded-full flex items-center justify-center gap-1 transition active:scale-98 whitespace-nowrap"
               title="Call Line 2: 080 9526 6198"
             >
-              <Phone className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
-              <span>080 9526 6198</span>
+              <Phone className="w-3 h-3 text-[#dfc282] shrink-0" />
+              <span className="whitespace-nowrap font-mono tracking-tight">080 9526 6198</span>
             </a>
           </div>
         </div>
