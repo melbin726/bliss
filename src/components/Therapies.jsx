@@ -72,12 +72,8 @@ export default function Therapies({ onOpenBooking }) {
           </div>
         </div>
 
-        {/* Mobile: Horizontal Swipe Carousel | Desktop: 3-column Grid */}
+        {/* Mobile: Stacked Cards | Desktop: 3-column Grid */}
         <div className="relative">
-          {/* Mobile edge-fade indicators */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-5 bg-gradient-to-r from-[#0a110e] to-transparent z-10 md:hidden" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-5 bg-gradient-to-l from-[#0a110e] to-transparent z-10 md:hidden" />
-
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredTherapies.map((therapy, idx) => (
               <article
@@ -135,12 +131,12 @@ export default function Therapies({ onOpenBooking }) {
             ))}
           </div>
 
-          {/* Mobile Horizontal Swipe Carousel */}
-          <div className="-mx-3.5 px-3.5 md:hidden flex gap-3.5 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 pt-1">
+          {/* Mobile Cards */}
+          <div className="md:hidden grid grid-cols-1 gap-3.5 pb-2 pt-1">
             {filteredTherapies.map((therapy, idx) => (
               <article
                 key={therapy.id}
-                className="snap-start shrink-0 w-[82vw] max-w-[300px] bg-[#14221c] border border-white/10 rounded-2xl overflow-hidden shadow-xl flex flex-col"
+                className="w-full bg-[#14221c] border border-white/10 rounded-2xl overflow-hidden shadow-xl flex flex-col"
               >
                 <div className="relative h-40 overflow-hidden">
                   <img
@@ -191,13 +187,6 @@ export default function Therapies({ onOpenBooking }) {
                   </button>
                 </div>
               </article>
-            ))}
-          </div>
-
-          {/* Swipe hint dots (mobile only) */}
-          <div className="flex md:hidden items-center justify-center gap-1.5 mt-2">
-            {filteredTherapies.map((_, i) => (
-              <span key={i} className="w-1.5 h-1.5 rounded-full bg-white/20" />
             ))}
           </div>
         </div>
