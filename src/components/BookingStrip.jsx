@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, Sparkles, User } from 'lucide-react';
+import { Calendar, Clock, User, Feather, ArrowRight } from 'lucide-react';
 import CustomDropdown from './CustomDropdown';
 
 export default function BookingStrip({ onOpenBooking }) {
@@ -53,7 +53,7 @@ export default function BookingStrip({ onOpenBooking }) {
               onChange={setService}
               options={serviceOptions}
               placeholder="Select Treatment"
-              icon={Sparkles}
+              icon={Feather}
             />
           </div>
 
@@ -98,7 +98,7 @@ export default function BookingStrip({ onOpenBooking }) {
               className="w-full min-h-[42px] py-2 px-4 rounded-xl bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-xs sm:text-sm shadow-md hover:brightness-105 active:scale-98 transition cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
             >
               <span>Instant Reserve</span>
-              <Sparkles className="w-3.5 h-3.5 text-[#060f0a]" />
+              <ArrowRight className="w-4 h-4 text-[#060f0a]" />
             </button>
           </div>
         </form>

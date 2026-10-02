@@ -13,7 +13,10 @@ import {
   HelpCircle, 
   Image, 
   Flame, 
-  ShieldCheck 
+  ShieldCheck,
+  Leaf,
+  Sliders,
+  Layers
 } from 'lucide-react';
 
 const PRIMARY_NAV = [
@@ -30,9 +33,9 @@ const DRAWER_ITEMS = [
   { id: 'matcher', label: 'De-Stress Matcher', href: '#matcher', icon: Heart },
   { id: 'therapies', label: 'All Therapies', href: '#therapies', icon: Sparkles },
   { id: 'thai-massage', label: 'Traditional Thai Massage', href: '#thai-massage', icon: Flame },
-  { id: 'ayurveda', label: 'Ayurvedic Rituals', href: '#ayurveda', icon: ShieldCheck },
-  { id: 'guide', label: 'Therapy Comparison Guide', href: '#guide', icon: Compass },
-  { id: 'calculator', label: 'Custom Package Builder', href: '#calculator', icon: Sparkles },
+  { id: 'ayurveda', label: 'Ayurvedic Rituals', href: '#ayurveda', icon: Leaf },
+  { id: 'guide', label: 'Therapy Comparison Guide', href: '#guide', icon: Sliders },
+  { id: 'calculator', label: 'Custom Package Builder', href: '#calculator', icon: Layers },
   { id: 'gallery', label: 'Photo Gallery', href: '#gallery', icon: Image },
   { id: 'faq', label: 'Guest FAQ', href: '#faq', icon: HelpCircle },
   { id: 'location', label: 'Directions & Map', href: '#location', icon: MapPin },
@@ -176,19 +179,25 @@ export default function Navbar({ onOpenBooking, isZenPlaying, onToggleZen, onTog
 
           {/* Header Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
-            {/* Zen Sound Button (2XL Screens to avoid crowding) */}
+            {/* Zen Sound Button - Sticky Top Header across Mobile & Desktop */}
             <button
               type="button"
               onClick={handleToggleZen}
-              className={`hidden 2xl:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer border ${
+              className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition cursor-pointer border active:scale-95 whitespace-nowrap ${
                 isZenPlaying 
-                  ? 'bg-[#cfa559] text-[#060f0a] border-[#cfa559] shadow-[0_0_12px_rgba(197,160,89,0.3)]' 
+                  ? 'bg-[#cfa559] text-[#060f0a] border-[#cfa559] shadow-[0_0_12px_rgba(207,165,89,0.35)]' 
                   : 'bg-[#cfa559]/10 hover:bg-[#cfa559]/20 border-[#cfa559]/35 text-[#dfc282]'
               }`}
               title="Toggle Zen 432Hz Sound"
+              aria-label={isZenPlaying ? 'Mute Zen Audio' : 'Play Zen Audio'}
             >
-              {isZenPlaying ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
-              <span>{isZenPlaying ? 'Zen Active' : 'Zen Sound'}</span>
+              {isZenPlaying ? (
+                <Volume2 className="w-3.5 h-3.5 animate-pulse text-[#060f0a] shrink-0" />
+              ) : (
+                <VolumeX className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
+              )}
+              <span className="hidden xs:inline">{isZenPlaying ? 'Zen Active' : 'Zen Sound'}</span>
+              <span className="xs:hidden">{isZenPlaying ? 'Mute' : 'Zen'}</span>
             </button>
 
             {/* Direct Phone Pill (Desktop XL+ - hidden on lg to preserve generous capsule breathing room) */}
@@ -295,9 +304,13 @@ export default function Navbar({ onOpenBooking, isZenPlaying, onToggleZen, onTog
           <button 
             type="button"
             onClick={handleToggleZen} 
-            className="w-full min-h-[44px] bg-[#cfa559]/10 hover:bg-[#cfa559]/20 border border-[#cfa559]/35 text-[#dfc282] text-xs font-semibold py-2.5 rounded-full flex items-center justify-center gap-2 transition active:scale-98"
+            className={`w-full min-h-[44px] border text-xs font-semibold py-2.5 rounded-full flex items-center justify-center gap-2 transition active:scale-98 ${
+              isZenPlaying
+                ? 'bg-[#cfa559] text-[#060f0a] border-[#cfa559] shadow-[0_0_14px_rgba(207,165,89,0.35)]'
+                : 'bg-[#cfa559]/10 hover:bg-[#cfa559]/20 border-[#cfa559]/35 text-[#dfc282]'
+            }`}
           >
-            {isZenPlaying ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+            {isZenPlaying ? <Volume2 className="w-4 h-4 animate-pulse" /> : <VolumeX className="w-4 h-4 opacity-80" />}
             <span>{isZenPlaying ? 'Mute Zen Audio' : 'Play Zen Singing Bowls'}</span>
           </button>
           
@@ -313,7 +326,7 @@ export default function Navbar({ onOpenBooking, isZenPlaying, onToggleZen, onTog
           <div className="grid grid-cols-2 gap-2">
             <a 
               href="tel:09945264342" 
-              className="min-h-[42px] bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-[11px] font-semibold py-2 px-1 rounded-full flex items-center justify-center gap-1 transition active:scale-98 whitespace-nowrap"
+              className="min-h-[42px] bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-[10px] xs:text-[11px] font-semibold py-2 px-1 rounded-full flex items-center justify-center gap-1 transition active:scale-98 whitespace-nowrap"
               title="Call Line 1: 099452 64342"
             >
               <Phone className="w-3 h-3 text-[#dfc282] shrink-0" />
@@ -321,7 +334,7 @@ export default function Navbar({ onOpenBooking, isZenPlaying, onToggleZen, onTog
             </a>
             <a 
               href="tel:08095266198" 
-              className="min-h-[42px] bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-[11px] font-semibold py-2 px-1 rounded-full flex items-center justify-center gap-1 transition active:scale-98 whitespace-nowrap"
+              className="min-h-[42px] bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-[10px] xs:text-[11px] font-semibold py-2 px-1 rounded-full flex items-center justify-center gap-1 transition active:scale-98 whitespace-nowrap"
               title="Call Line 2: 080 9526 6198"
             >
               <Phone className="w-3 h-3 text-[#dfc282] shrink-0" />

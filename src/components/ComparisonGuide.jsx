@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Feather, Droplet, Users, ShowerHead, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Feather, Wind, Activity, Droplet, Heart, Moon, Target, ShowerHead, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const treatments = [
   {
@@ -9,7 +9,7 @@ const treatments = [
     attrs: [
       { icon: Feather, label: 'Pressure', value: 'Gentle to Moderate' },
       { icon: Droplet, label: 'Oil', value: 'Neutral Herbal Carrier Oils' },
-      { icon: Users, label: 'Best For', value: 'First-timers & stress unwind' },
+      { icon: Heart, label: 'Best For', value: 'First-timers & stress unwind' },
       { icon: ShowerHead, label: 'Steam', value: 'En-suite steam included' },
     ],
     highlight: false,
@@ -19,9 +19,9 @@ const treatments = [
     name: 'Aroma Massage', price: '₹2,199', service: 'Aroma Massage', badge: 'Most Popular',
     desc: 'Blends gentle soothing touch with the direct inhalation of organic lavender and chamomile essential oils.',
     attrs: [
-      { icon: Feather, label: 'Pressure', value: 'Light to Gentle' },
+      { icon: Wind, label: 'Pressure', value: 'Light to Gentle' },
       { icon: Droplet, label: 'Oil', value: 'Pure Lavender & Chamomile' },
-      { icon: Users, label: 'Best For', value: 'Burnout, insomnia & calm' },
+      { icon: Moon, label: 'Best For', value: 'Burnout, insomnia & calm' },
       { icon: ShowerHead, label: 'Steam', value: 'En-suite steam included' },
     ],
     highlight: true,
@@ -31,9 +31,9 @@ const treatments = [
     name: 'Deep Tissue Massage', price: '₹2,299', service: 'Deep Tissue Massage',
     desc: 'Targeted, firm friction strokes designed to release dense adhesions and knots in the trapezius and back.',
     attrs: [
-      { icon: Feather, label: 'Pressure', value: 'Firm & Deep' },
+      { icon: Activity, label: 'Pressure', value: 'Firm & Deep' },
       { icon: Droplet, label: 'Oil', value: 'Warm Wintergreen Infusion' },
-      { icon: Users, label: 'Best For', value: 'Desk neck, stiffness & gym knots' },
+      { icon: Target, label: 'Best For', value: 'Desk neck, stiffness & gym knots' },
       { icon: ShowerHead, label: 'Steam', value: 'En-suite steam included' },
     ],
     highlight: false,
@@ -42,6 +42,23 @@ const treatments = [
 
 export default function ComparisonGuide({ onOpenBooking }) {
   const [activeTab, setActiveTab] = useState(1);
+  const [touchStart, setTouchStart] = useState(null);
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const distance = touchStart - touchEnd;
+    if (distance > 45) {
+      setActiveTab((prev) => (prev + 1) % treatments.length);
+    } else if (distance < -45) {
+      setActiveTab((prev) => (prev - 1 + treatments.length) % treatments.length);
+    }
+    setTouchStart(null);
+  };
 
   return (
     <section id="guide" className="relative bg-[#0d1612] border-t border-white/10 py-10 sm:py-20 px-3.5 sm:px-6 lg:px-8">
@@ -119,6 +136,8 @@ export default function ComparisonGuide({ onOpenBooking }) {
             return (
               <div
                 key={t.key}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
                 className={`relative bg-[#14221c] rounded-2xl p-4 flex flex-col shadow-xl transition-all duration-300 ${
                   t.highlight ? 'border-2 border-[#cfa559]' : 'border border-white/10'
                 }`}
@@ -166,10 +185,13 @@ export default function ComparisonGuide({ onOpenBooking }) {
 
                 <div className="flex items-center justify-center gap-1.5 mt-3">
                   {treatments.map((_, i) => (
-                    <span
+                    <button
                       key={i}
-                      className={`rounded-full transition-all duration-200 ${
-                        i === activeTab ? 'w-4 h-1.5 bg-[#cfa559]' : 'w-1.5 h-1.5 bg-white/20'
+                      type="button"
+                      onClick={() => setActiveTab(i)}
+                      aria-label={`View ${treatments[i].label}`}
+                      className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                        i === activeTab ? 'w-5 bg-[#cfa559]' : 'w-1.5 bg-white/20 hover:bg-white/40'
                       }`}
                     />
                   ))}

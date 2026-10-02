@@ -1,13 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Sparkles, Clock, Check, ArrowRight } from 'lucide-react';
 import { therapiesData } from '../data/therapiesData';
 
 export default function Therapies({ onOpenBooking }) {
   const [filter, setFilter] = useState('all');
+  const [activeCardIdx, setActiveCardIdx] = useState(0);
+  const carouselRef = useRef(null);
 
   const filteredTherapies = filter === 'all'
     ? therapiesData
     : therapiesData.filter(t => t.category === filter);
+
+  const handleCarouselScroll = (e) => {
+    const el = e.currentTarget;
+    const firstChild = el.firstElementChild;
+    if (!firstChild) return;
+    const cardWidth = firstChild.offsetWidth;
+    const gap = 14; // gap-3.5 is 14px in Tailwind
+    const index = Math.round(el.scrollLeft / (cardWidth + gap));
+    setActiveCardIdx(Math.min(filteredTherapies.length - 1, Math.max(0, index)));
+  };
+
+  const scrollToCard = (index) => {
+    setActiveCardIdx(index);
+    if (!carouselRef.current) return;
+    const el = carouselRef.current;
+    const firstChild = el.firstElementChild;
+    if (!firstChild) return;
+    const cardWidth = firstChild.offsetWidth;
+    const gap = 14;
+    el.scrollTo({
+      left: index * (cardWidth + gap),
+      behavior: 'smooth',
+    });
+  };
+
+  const handleFilterChange = (tabValue) => {
+    setFilter(tabValue);
+    setActiveCardIdx(0);
+    if (carouselRef.current) {
+      carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+  };
 
   const tabs = [
     { label: 'All Treatments', value: 'all' },
@@ -32,10 +66,6 @@ export default function Therapies({ onOpenBooking }) {
 
         {/* Filter Tabs */}
         <div className="reveal stagger-1 relative mb-6 sm:mb-10">
-          {/* Subtle Mobile Scroll Overflow Indicators */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-[#0a110e] to-transparent z-10 sm:hidden" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-[#0a110e] to-transparent z-10 sm:hidden" />
-
           <div className="-mx-3.5 px-3.5 sm:mx-0 sm:px-0 flex items-center justify-start sm:justify-center overflow-x-auto py-2 scrollbar-none snap-x overscroll-x-contain">
             <div className="inline-flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 bg-[#09120e]/90 border border-white/10 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.08)] backdrop-blur-xl">
               {tabs.map((tab) => {
@@ -48,7 +78,7 @@ export default function Therapies({ onOpenBooking }) {
                   <button
                     key={tab.value}
                     type="button"
-                    onClick={() => setFilter(tab.value)}
+                    onClick={() => handleFilterChange(tab.value)}
                     className={`px-3 sm:px-4 py-2 min-h-[38px] rounded-full text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer snap-start shrink-0 active:scale-95 flex items-center gap-1.5 ${
                       isActive
                         ? 'bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold shadow-[0_2px_12px_rgba(207,165,89,0.32)] scale-[1.02]'
@@ -74,10 +104,6 @@ export default function Therapies({ onOpenBooking }) {
 
         {/* Mobile: Horizontal Swipe Carousel | Desktop: 3-column Grid */}
         <div className="relative">
-          {/* Mobile edge-fade indicators */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-5 bg-gradient-to-r from-[#0a110e] to-transparent z-10 md:hidden" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-5 bg-gradient-to-l from-[#0a110e] to-transparent z-10 md:hidden" />
-
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {filteredTherapies.map((therapy, idx) => (
               <article
@@ -136,7 +162,11 @@ export default function Therapies({ onOpenBooking }) {
           </div>
 
           {/* Mobile Horizontal Swipe Carousel */}
-          <div className="-mx-3.5 px-3.5 md:hidden flex gap-3.5 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 pt-1">
+          <div 
+            ref={carouselRef}
+            onScroll={handleCarouselScroll}
+            className="-mx-3.5 px-3.5 md:hidden flex gap-3.5 overflow-x-auto scrollbar-none snap-x snap-mandatory pb-4 pt-1"
+          >
             {filteredTherapies.map((therapy, idx) => (
               <article
                 key={therapy.id}
@@ -186,7 +216,7 @@ export default function Therapies({ onOpenBooking }) {
                     onClick={() => onOpenBooking(therapy.name || therapy.title, therapy.price)}
                     className="w-full py-2 px-3 rounded-full bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-[11px] shadow-[0_2px_10px_rgba(197,160,89,0.2)] active:scale-95 transition-all flex items-center justify-center gap-1 cursor-pointer"
                   >
-                    <span>Book</span>
+                    <span>Book Appointment</span>
                     <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>
@@ -194,12 +224,22 @@ export default function Therapies({ onOpenBooking }) {
             ))}
           </div>
 
-          {/* Swipe hint dots (mobile only) */}
-          <div className="flex md:hidden items-center justify-center gap-1.5 mt-2">
-            {filteredTherapies.map((_, i) => (
-              <span key={i} className="w-1.5 h-1.5 rounded-full bg-white/20" />
-            ))}
-          </div>
+          {/* Dynamic interactive slide dots (mobile only) */}
+          {filteredTherapies.length > 1 && (
+            <div className="flex md:hidden items-center justify-center gap-1.5 mt-2">
+              {filteredTherapies.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => scrollToCard(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    i === activeCardIdx ? 'w-5 bg-[#cfa559]' : 'w-1.5 bg-white/20 hover:bg-white/40'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

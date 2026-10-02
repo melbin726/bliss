@@ -50,7 +50,7 @@ export default function App() {
   }, []);
 
   // Zen 432Hz ambient audio hook
-  const { isPlaying: isZenPlaying, toggleAudio: toggleZenAudio } = useZenAudio();
+  const { isPlaying: isZenPlaying, toggleZenAudio } = useZenAudio();
 
   // Mobile and desktop luxury scroll reveal observer
   useScrollReveal();

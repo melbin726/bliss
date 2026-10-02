@@ -8,7 +8,6 @@ import {
   User, 
   Phone, 
   FileText, 
-  Send, 
   MessageSquare, 
   Copy, 
   Check, 
@@ -16,6 +15,7 @@ import {
   ShieldCheck,
   ExternalLink
 } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import { therapiesData } from '../data/therapiesData';
 import CustomDropdown from './CustomDropdown';
 
@@ -427,6 +427,7 @@ export default function BookingModal({
                       onChange={() => setPreferredChannel('whatsapp')}
                       className="accent-[#25D366] w-3.5 h-3.5"
                     />
+                    <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
                     <span>via WhatsApp</span>
                   </label>
 
@@ -443,7 +444,7 @@ export default function BookingModal({
                       onChange={() => setPreferredChannel('sms')}
                       className="accent-[#cfa559] w-3.5 h-3.5"
                     />
-                    <span>via Free SMS App</span>
+                    <span>via Free SMS</span>
                   </label>
                 </div>
 
@@ -556,7 +557,7 @@ export default function BookingModal({
                     className="w-full py-2.5 px-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-black font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer shadow-[0_2px_8px_rgba(37,211,102,0.2)] whitespace-nowrap"
                     title="Send WhatsApp to 099452 64342"
                   >
-                    <Send className="w-3.5 h-3.5" />
+                    <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
                     <span>WhatsApp</span>
                   </button>
                 </div>
@@ -564,8 +565,8 @@ export default function BookingModal({
 
               {/* Concierge Desk Dispatch Block */}
               <div className="bg-black/40 border border-white/10 rounded-xl p-3 mb-3">
-                <div className="flex items-center justify-between mb-2 gap-2">
-                  <div className="flex items-center gap-1.5 flex-nowrap whitespace-nowrap min-w-0">
+                <div className="flex flex-wrap items-center justify-between mb-2 gap-1.5 sm:gap-2">
+                  <div className="flex flex-wrap items-center gap-1.5 min-w-0">
                     <Phone className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
                     <span className="text-xs font-bold text-white whitespace-nowrap">Concierge Desk:</span>
                     <span className="text-xs font-mono text-[#dfc282] font-semibold whitespace-nowrap">080 9526 6198</span>
@@ -590,7 +591,7 @@ export default function BookingModal({
                     className="w-full py-2.5 px-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-black font-bold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition cursor-pointer shadow-[0_2px_8px_rgba(37,211,102,0.2)]"
                     title="Send WhatsApp to 080 9526 6198"
                   >
-                    <Send className="w-3.5 h-3.5" />
+                    <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
                     <span>WhatsApp</span>
                   </button>
                 </div>

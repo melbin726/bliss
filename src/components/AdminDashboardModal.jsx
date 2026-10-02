@@ -16,6 +16,7 @@ import {
   Settings, 
   ExternalLink 
 } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import CustomDropdown from './CustomDropdown';
 
 export default function AdminDashboardModal({ isOpen, onClose }) {
@@ -479,7 +480,7 @@ export default function AdminDashboardModal({ isOpen, onClose }) {
                     title="Send WhatsApp Confirmation"
                     aria-label="Send WhatsApp Confirmation"
                   >
-                    <Send className="w-3.5 h-3.5" />
+                    <WhatsAppIcon className="w-3.5 h-3.5" />
                   </a>
 
                   {/* Mark Completed */}
