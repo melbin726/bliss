@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Feather, Activity, Flame, Target, ArrowRight } from 'lucide-react';
 
 export default function ThaiMassage({ onOpenBooking }) {
   return (
@@ -17,10 +17,12 @@ export default function ThaiMassage({ onOpenBooking }) {
               Traditional Thai Massage is an ancient bodywork therapy performed on a comfortable floor mat. You remain in loose cotton attire while skilled practitioners guide your body through gentle yoga stretches, rhythmic palming, and acupressure.
             </p>
 
-            {/* 4 Highlights */}
+            {/* 4 Highlights with Bespoke Thematic Icons */}
             <div className="grid grid-cols-1 xs:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6">
               <div className="reveal-scale stagger-1 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
+                <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+                  <Feather className="w-4 h-4 text-[#dfc282]" />
+                </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">100% Oil-Free</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Loose cotton robes, zero oils.</p>
@@ -28,7 +30,9 @@ export default function ThaiMassage({ onOpenBooking }) {
               </div>
 
               <div className="reveal-scale stagger-2 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
+                <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+                  <Activity className="w-4 h-4 text-[#dfc282]" />
+                </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">Decompression</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Unlocks tight spine and hips.</p>
@@ -36,7 +40,9 @@ export default function ThaiMassage({ onOpenBooking }) {
               </div>
 
               <div className="reveal-scale stagger-3 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
+                <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+                  <Flame className="w-4 h-4 text-[#dfc282]" />
+                </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">Assisted Yoga</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Deep passive yoga stretches.</p>
@@ -44,7 +50,9 @@ export default function ThaiMassage({ onOpenBooking }) {
               </div>
 
               <div className="reveal-scale stagger-4 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
+                <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+                  <Target className="w-4 h-4 text-[#dfc282]" />
+                </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">Acupressure</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Stimulates energy pathways.</p>

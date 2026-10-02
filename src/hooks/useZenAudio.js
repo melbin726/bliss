@@ -13,37 +13,61 @@ export function useZenAudio() {
 
   const triggerChime = useCallback(() => {
     const ctx = audioCtxRef.current;
-    if (!ctx || ctx.state === 'suspended') return;
+    if (!ctx || ctx.state === 'closed') return;
 
-    const chimeFreqs = [432, 540, 648, 864];
-    const freq = chimeFreqs[Math.floor(Math.random() * chimeFreqs.length)];
+    if (ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
 
-    const chimeOsc = ctx.createOscillator();
-    const chimeGain = ctx.createGain();
+    try {
+      const chimeFreqs = [432, 540, 648, 864];
+      const freq = chimeFreqs[Math.floor(Math.random() * chimeFreqs.length)];
 
-    chimeOsc.type = 'sine';
-    chimeOsc.frequency.setValueAtTime(freq, ctx.currentTime);
+      const chimeOsc = ctx.createOscillator();
+      const chimeGain = ctx.createGain();
 
-    chimeGain.gain.setValueAtTime(0.001, ctx.currentTime);
-    chimeGain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + 0.1);
-    chimeGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 4.5);
+      chimeOsc.type = 'sine';
+      chimeOsc.frequency.setValueAtTime(freq, ctx.currentTime);
 
-    chimeOsc.connect(chimeGain);
-    chimeGain.connect(ctx.destination);
+      chimeGain.gain.setValueAtTime(0.001, ctx.currentTime);
+      chimeGain.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + 0.1);
+      chimeGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 4.5);
 
-    chimeOsc.start();
-    chimeOsc.stop(ctx.currentTime + 4.6);
+      chimeOsc.connect(chimeGain);
+      chimeGain.connect(ctx.destination);
+
+      chimeOsc.start();
+      chimeOsc.stop(ctx.currentTime + 4.6);
+    } catch (_) {
+      // Audio node scheduling exception safety
+    }
   }, []);
 
-  const startZenAudio = useCallback(() => {
+  const startZenAudio = useCallback(async () => {
     try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      const ctx = new AudioContext();
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) {
+        console.warn('Web Audio API not supported in this browser.');
+        return;
+      }
+
+      // Close lingering previous audio context if any
+      if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
+        try { audioCtxRef.current.close(); } catch (_) {}
+      }
+
+      const ctx = new AudioContextClass();
       audioCtxRef.current = ctx;
 
+      // Critical for iOS Safari & mobile browsers: AudioContext often starts suspended.
+      // Resume must be triggered in the user interaction event loop.
+      if (ctx.state === 'suspended') {
+        await ctx.resume().catch(() => {});
+      }
+
       const masterGain = ctx.createGain();
-      masterGain.gain.setValueAtTime(0.01, ctx.currentTime);
-      masterGain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + 3);
+      masterGain.gain.setValueAtTime(0.001, ctx.currentTime);
+      masterGain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + 1.2);
       masterGainRef.current = masterGain;
 
       const filter = ctx.createBiquadFilter();
@@ -81,31 +105,52 @@ export function useZenAudio() {
       drone2.start();
       lfo.start();
 
-      triggerChime();
+      // Trigger first gentle singing bowl chime promptly
+      setTimeout(() => triggerChime(), 150);
+
+      if (chimeIntervalRef.current) clearInterval(chimeIntervalRef.current);
       chimeIntervalRef.current = setInterval(() => {
         triggerChime();
-      }, 7500);
+      }, 7000);
 
       setIsPlaying(true);
     } catch (e) {
-      console.warn('Web Audio not supported:', e);
+      console.warn('Zen Audio failed to start:', e);
     }
   }, [triggerChime]);
 
   const stopZenAudio = useCallback(() => {
+    if (chimeIntervalRef.current) {
+      clearInterval(chimeIntervalRef.current);
+      chimeIntervalRef.current = null;
+    }
+
     const ctx = audioCtxRef.current;
     const masterGain = masterGainRef.current;
+    const osc1 = droneOsc1Ref.current;
+    const osc2 = droneOsc2Ref.current;
+    const lfo = lfoRef.current;
 
-    if (masterGain && ctx) {
-      masterGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1);
+    if (masterGain && ctx && ctx.state !== 'closed') {
+      try {
+        masterGain.gain.setValueAtTime(masterGain.gain.value, ctx.currentTime);
+        masterGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.8);
+      } catch (_) { /* ignore */ }
+
       setTimeout(() => {
-        if (droneOsc1Ref.current) { droneOsc1Ref.current.stop(); droneOsc1Ref.current.disconnect(); }
-        if (droneOsc2Ref.current) { droneOsc2Ref.current.stop(); droneOsc2Ref.current.disconnect(); }
-        if (lfoRef.current) { lfoRef.current.stop(); lfoRef.current.disconnect(); }
-        if (chimeIntervalRef.current) clearInterval(chimeIntervalRef.current);
-        if (ctx) ctx.close();
-      }, 1000);
+        try {
+          if (osc1) { osc1.stop(); osc1.disconnect(); }
+          if (osc2) { osc2.stop(); osc2.disconnect(); }
+          if (lfo) { lfo.stop(); lfo.disconnect(); }
+          if (ctx && ctx.state !== 'closed') ctx.close();
+        } catch (_) { /* already stopped */ }
+
+        if (audioCtxRef.current === ctx) {
+          audioCtxRef.current = null;
+        }
+      }, 850);
     }
+
     setIsPlaying(false);
   }, []);
 
@@ -120,9 +165,19 @@ export function useZenAudio() {
   useEffect(() => {
     return () => {
       if (chimeIntervalRef.current) clearInterval(chimeIntervalRef.current);
-      if (audioCtxRef.current) audioCtxRef.current.close().catch(() => {});
+      if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
+        audioCtxRef.current.close().catch(() => {});
+      }
     };
   }, []);
 
-  return { isPlaying, toggleZenAudio };
+  return {
+    isPlaying,
+    isZenPlaying: isPlaying,
+    toggleZenAudio,
+    toggleAudio: toggleZenAudio,
+    toggleZen: toggleZenAudio,
+    startZenAudio,
+    stopZenAudio
+  };
 }

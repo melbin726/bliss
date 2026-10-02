@@ -1,5 +1,5 @@
 import React from 'react';
-import { Leaf, Sparkles, ArrowRight } from 'lucide-react';
+import { Heart, Target, Droplets, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function AyurvedaRituals({ onOpenBooking }) {
   return (
@@ -38,10 +38,12 @@ export default function AyurvedaRituals({ onOpenBooking }) {
               At Bliss Spa BTM Layout, our certified Ayurvedic practitioners use warm classical herbal oils and synchronized strokes over 107 Marma energy nodes for deep physiological restoration.
             </p>
 
-            {/* 4 Highlights */}
+            {/* 4 Highlights with Bespoke Thematic Icons */}
             <div className="grid grid-cols-1 xs:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6">
               <div className="reveal-scale stagger-1 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <Leaf className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
+                <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+                  <Heart className="w-4 h-4 text-[#dfc282]" />
+                </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">Abhyanga</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Rhythmic nourishing palm work.</p>
@@ -49,7 +51,9 @@ export default function AyurvedaRituals({ onOpenBooking }) {
               </div>
 
               <div className="reveal-scale stagger-2 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <Leaf className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
+                <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+                  <Target className="w-4 h-4 text-[#dfc282]" />
+                </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">Marma Healing</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Releases blocked energy channels.</p>
@@ -57,7 +61,9 @@ export default function AyurvedaRituals({ onOpenBooking }) {
               </div>
 
               <div className="reveal-scale stagger-3 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <Leaf className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
+                <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+                  <Sparkles className="w-4 h-4 text-[#dfc282]" />
+                </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">Natural Detox</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Mobilizes stored metabolic toxins.</p>
@@ -65,7 +71,9 @@ export default function AyurvedaRituals({ onOpenBooking }) {
               </div>
 
               <div className="reveal-scale stagger-4 bg-[#14221c] border border-white/10 rounded-xl p-3 flex items-start gap-2.5">
-                <Leaf className="w-4 h-4 text-[#dfc282] shrink-0 mt-0.5" />
+                <div className="w-8 h-8 rounded-lg bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
+                  <Droplets className="w-4 h-4 text-[#dfc282]" />
+                </div>
                 <div>
                   <h4 className="text-xs font-bold text-white">Shirodhara</h4>
                   <p className="text-[10px] text-slate-300 mt-0.5">Continuous warm herbal stream.</p>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Sparkles, Calendar, Heart, Shield, Star, Award, ShieldCheck } from 'lucide-react';
+import { Calendar, CalendarCheck, Heart, Shield, Star, Award, ShieldCheck } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 
 export default function Hero({ onOpenBooking }) {
   const stories = [
@@ -31,9 +32,9 @@ export default function Hero({ onOpenBooking }) {
       <div className="container relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
 
         {/* Tranquil Live Status Badge */}
-        <div className="reveal inline-flex items-center gap-1.5 bg-[#14221c]/80 border border-[#cfa559]/25 rounded-full py-1 px-3 mb-3 sm:mb-4 backdrop-blur-md shadow-sm max-w-full">
+        <div className="reveal inline-flex items-center gap-1.5 bg-[#14221c] border border-[#cfa559]/40 rounded-full py-1 px-3 mb-3 sm:mb-4 shadow-[0_0_20px_rgba(0,0,0,0.6)] max-w-full">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399] shrink-0" />
-          <span className="text-[10px] xs:text-[11px] sm:text-xs font-medium text-slate-200 truncate">
+          <span className="text-[10px] xs:text-[11px] sm:text-xs font-medium text-white truncate">
             Open Today 10 AM – 10 PM • <strong className="text-[#dfc282] font-semibold">4.9 ★</strong> (1,450+ Guests)
           </span>
         </div>
@@ -50,7 +51,7 @@ export default function Hero({ onOpenBooking }) {
         </h1>
 
         {/* Calming Poetic Subtitle */}
-        <p className="reveal stagger-2 font-sans text-[11px] xs:text-xs sm:text-base text-slate-200/90 leading-relaxed max-w-xl mx-auto mb-4 sm:mb-7 font-light px-2 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+        <p className="reveal stagger-2 font-sans text-[11px] xs:text-xs sm:text-base text-white/95 leading-relaxed max-w-xl mx-auto mb-4 sm:mb-7 font-light px-2 drop-shadow-[0_1px_8px_rgba(0,0,0,0.95)]">
           Bengaluru's candlelit sanctuary in BTM 1st Stage. Warm herbal oils, certified therapist care, private A/C suites with en-suite hot steam &amp; shower.
         </p>
 
@@ -61,7 +62,7 @@ export default function Hero({ onOpenBooking }) {
             onClick={() => onOpenBooking('Swedish Massage', '₹1,999')}
             className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-semibold text-xs sm:text-sm px-3.5 xs:px-5 py-2.5 rounded-full shadow-[0_3px_12px_rgba(197,160,89,0.22)] hover:brightness-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#060f0a] shrink-0" />
+            <CalendarCheck className="w-3.5 h-3.5 text-[#060f0a] shrink-0" />
             <span>Book • ₹0 Today</span>
           </button>
 
@@ -71,6 +72,7 @@ export default function Hero({ onOpenBooking }) {
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-1.5 bg-[#25d366]/10 hover:bg-[#25d366]/20 border border-[#25d366]/40 text-[#25d366] font-medium text-xs sm:text-sm px-3 xs:px-4 py-2.5 rounded-full backdrop-blur-sm transition active:scale-95 whitespace-nowrap shrink-0"
           >
+            <WhatsAppIcon className="w-3.5 h-3.5 text-[#25d366] shrink-0" />
             <span>WhatsApp</span>
           </a>
         </div>
@@ -78,12 +80,12 @@ export default function Hero({ onOpenBooking }) {
         {/* Airy Therapy Story Rings (Un-boxed on mobile to eliminate clutter) */}
         <div className="reveal stagger-4 w-full max-w-3xl mb-5 sm:mb-9 text-left sm:bg-[#0c1612]/85 sm:border sm:border-[#cfa559]/25 sm:rounded-2xl sm:p-4 sm:backdrop-blur-md sm:shadow-[0_8px_32px_rgba(0,0,0,0.65)]">
           <div className="flex items-center justify-between px-1 mb-2">
-            <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold text-slate-300 uppercase tracking-widest flex items-center gap-1.5">
-              <Sparkles className="w-3 h-3 text-[#dfc282]" />
+            <span className="text-[10px] xs:text-[11px] sm:text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
+              <Star className="w-3 h-3 text-[#dfc282] fill-[#dfc282]" />
               Popular Rituals
             </span>
-            <span className="text-[9px] xs:text-[10px] text-emerald-400 font-medium bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded-full">
-              Tap circle to book
+            <span className="text-[9px] xs:text-[10px] text-emerald-300 font-semibold bg-emerald-500/20 border border-emerald-400/40 px-2 py-0.5 rounded-full">
+              Tap to book
             </span>
           </div>
 
@@ -106,10 +108,10 @@ export default function Hero({ onOpenBooking }) {
                     />
                   </div>
                 </div>
-                <span className="text-[10px] xs:text-[11px] sm:text-xs font-medium text-slate-200 group-hover:text-[#dfc282] transition-colors truncate max-w-full leading-tight">
+                <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold text-white group-hover:text-[#dfc282] transition-colors truncate max-w-full leading-tight drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                   {s.name}
                 </span>
-                <span className="text-[9px] xs:text-[10px] sm:text-[11px] font-semibold bg-[#cfa559] text-[#060f0a] px-1.5 py-0.5 rounded-full leading-none whitespace-nowrap shadow-sm">
+                <span className="text-[9px] xs:text-[10px] sm:text-[11px] font-bold bg-[#cfa559] text-[#060f0a] px-1.5 py-0.5 rounded-full leading-none whitespace-nowrap shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
                   {s.price}
                 </span>
               </button>
@@ -117,15 +119,15 @@ export default function Hero({ onOpenBooking }) {
           </div>
         </div>
 
-        {/* Mobile: Serene 1-Line Trust Ribbon (Saves 120px of vertical box clutter) */}
-        <div className="reveal stagger-5 sm:hidden flex items-center justify-center gap-2 xs:gap-3 text-[10px] xs:text-[11px] text-slate-300 py-1.5 px-3 bg-white/[0.04] border border-white/10 rounded-full backdrop-blur-sm max-w-full overflow-x-auto scrollbar-none">
-          <span className="flex items-center gap-1 text-[#dfc282] font-semibold whitespace-nowrap">
-            <Star className="w-2.5 h-2.5 fill-[#dfc282]" /> 4.9 (1.4k+ Reviews)
+        {/* Mobile: Legible Trust Ribbon */}
+        <div className="reveal stagger-5 sm:hidden flex items-center justify-center gap-2 xs:gap-3 text-[10px] xs:text-[11px] text-white py-1.5 px-3.5 bg-[#14221c] border border-[#cfa559]/30 rounded-full shadow-[0_0_16px_rgba(0,0,0,0.5)] max-w-full overflow-x-auto scrollbar-none">
+          <span className="flex items-center gap-1 text-[#dfc282] font-bold whitespace-nowrap">
+            <Star className="w-2.5 h-2.5 fill-[#dfc282]" /> 4.9 (1.4k+)
           </span>
-          <span className="text-white/20">•</span>
-          <span className="whitespace-nowrap text-slate-200">Private Steam Suites</span>
-          <span className="text-white/20">•</span>
-          <span className="whitespace-nowrap text-emerald-400 font-medium">₹0 Advance</span>
+          <span className="text-[#cfa559]/60">•</span>
+          <span className="whitespace-nowrap text-slate-100 font-medium">Steam Suites</span>
+          <span className="text-[#cfa559]/60">•</span>
+          <span className="whitespace-nowrap text-emerald-300 font-bold">₹0 Advance</span>
         </div>
 
         {/* Tablet & Desktop: Spacious 4-Card Trust Grid */}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, PhoneCall, MessageCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle, PhoneCall } from 'lucide-react';
+import WhatsAppIcon from './WhatsAppIcon';
 import { faqData } from '../data/faqData';
 
 export default function FAQ({ onOpenBooking }) {
@@ -88,7 +89,7 @@ export default function FAQ({ onOpenBooking }) {
               rel="noopener noreferrer"
               className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#4ade80] font-medium text-[11px] sm:text-xs active:scale-95 transition-all whitespace-nowrap"
             >
-              <MessageCircle className="w-3 h-3 shrink-0" />
+              <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
               <span>WhatsApp</span>
             </a>
           </div>

@@ -1,7 +1,7 @@
 export const symptomsData = [
   {
     id: "desk-neck",
-    icon: "💻",
+    iconKey: "desk-neck",
     title: "Desk Neck & Knots",
     description: "Upper back stiffness, tight traps, and headache from 9+ hours of laptop screens & poor posture.",
     recommendation: "Deep Tissue Massage",
@@ -10,7 +10,7 @@ export const symptomsData = [
   },
   {
     id: "mental-burnout",
-    icon: "🧠",
+    iconKey: "mental-burnout",
     title: "Mental Burnout & Anxiety",
     description: "Racing mind, high stress, insomnia, and sensory overload from city deadlines and busy schedules.",
     recommendation: "Aroma Lavender",
@@ -19,7 +19,7 @@ export const symptomsData = [
   },
   {
     id: "commute-stiffness",
-    icon: "🚗",
+    iconKey: "commute-stiffness",
     title: "Commute Body Stiffness",
     description: "Tight hips, aching lumbar, and heavy legs from long Bangalore commute through Silk Board & BTM.",
     recommendation: "Thai Yoga Stretch",
@@ -28,7 +28,7 @@ export const symptomsData = [
   },
   {
     id: "toxin-heaviness",
-    icon: "🌿",
+    iconKey: "toxin-heaviness",
     title: "Toxin Build-up & Heaviness",
     description: "Sluggish metabolism, fatigue, aching joints, and dull skin craving holistic Ayurvedic herbal balance.",
     recommendation: "Ayurveda Abhyanga",
@@ -37,7 +37,7 @@ export const symptomsData = [
   },
   {
     id: "pure-unwind",
-    icon: "✨",
+    iconKey: "pure-unwind",
     title: "Pure Gentle Unwind",
     description: "Looking to completely melt away tension with warm nourishing oils, hot steam, and peaceful quiet.",
     recommendation: "Swedish Massage",

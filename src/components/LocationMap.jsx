@@ -39,9 +39,9 @@ export default function LocationMap({ onOpenBooking }) {
                   </div>
                   <div className="min-w-0 flex-1">
                     <h6 className="text-[10px] font-bold text-[#dfc282] uppercase tracking-wider">Phone Numbers</h6>
-                    <p className="text-xs sm:text-sm leading-snug mt-0.5 flex items-center gap-1.5 flex-nowrap whitespace-nowrap">
+                    <p className="text-xs sm:text-sm leading-snug mt-0.5 flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
                       <a href="tel:09945264342" className="text-[#dfc282] font-bold hover:underline whitespace-nowrap">099452 64342</a>
-                      <span className="text-white/30">/</span>
+                      <span className="text-white/30 hidden xs:inline">/</span>
                       <a href="tel:08095266198" className="text-white font-bold hover:underline whitespace-nowrap">080 9526 6198</a>
                     </p>
                   </div>

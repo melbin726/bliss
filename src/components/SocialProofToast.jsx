@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, X } from 'lucide-react';
+import { BadgeCheck, X } from 'lucide-react';
 
 const mockProofs = [
   { name: 'Dr. Arjun M.', location: 'Koramangala', therapy: 'Deep Tissue Sports Recovery', timeAgo: '8m ago' },
@@ -44,7 +44,7 @@ export default function SocialProofToast({ onBookTherapy }) {
   return (
     <div className="fixed bottom-20 left-4 z-30 hidden sm:flex items-center gap-3 bg-[#0d1612]/95 border border-[#cfa559]/25 rounded-2xl p-3.5 shadow-2xl backdrop-blur-md max-w-sm animate-fade-in transition-all">
       <div className="w-10 h-10 rounded-full bg-[#cfa559]/15 border border-[#cfa559]/25 flex items-center justify-center shrink-0">
-        <Sparkles className="w-4 h-4 text-[#dfc282]" />
+        <BadgeCheck className="w-5 h-5 text-[#dfc282]" />
       </div>
 
       <div className="text-left flex-1 min-w-0 pr-2">
