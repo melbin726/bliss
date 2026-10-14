@@ -4,14 +4,9 @@ import {
   Calendar, 
   Clock, 
   Sparkles, 
-  CheckCircle2, 
   User, 
   Phone, 
-  MessageSquare, 
-  Copy, 
-  Check, 
-  ShieldCheck,
-  ChevronRight
+  ShieldCheck 
 } from 'lucide-react';
 import WhatsAppIcon from './WhatsAppIcon';
 import { therapiesData } from '../data/therapiesData';
@@ -50,9 +45,6 @@ export default function BookingModal({
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [notes, setNotes] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [confirmedBooking, setConfirmedBooking] = useState(null);
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (initialService) {
@@ -89,7 +81,7 @@ export default function BookingModal({
     return found?.price || initialPrice || '₹1,999';
   };
 
-  const getWhatsAppUrl = (targetWaNumber = '919945264342', booking = confirmedBooking) => {
+  const getWhatsAppUrl = (targetWaNumber = '919945264342', booking) => {
     if (!booking) return '';
     const priceText = booking.price || getCurrentPrice();
     const msg = `*🌿 New Booking Request - Bliss Spa BTM Layout*%0A%0A` +
@@ -103,12 +95,6 @@ export default function BookingModal({
       (booking.notes && booking.notes !== 'No specific requests' ? `*Preferences:* ${encodeURIComponent(booking.notes)}%0A%0A` : '%0A') +
       `_Please confirm my private suite. Thank you!_`;
     return `https://wa.me/${targetWaNumber}?text=${msg}`;
-  };
-
-  const getNativeSmsUrl = (targetNumber = '9945264342', booking = confirmedBooking) => {
-    if (!booking) return '';
-    const text = `BLISS SPA: Hi, I booked ${booking.service} on ${booking.date} at ${booking.time}. Ref: ${booking.id}. Guest: ${booking.name} (${booking.phone}). Pay ₹0 advance. Please confirm suite. Thank you!`;
-    return `sms:${targetNumber}?&body=${encodeURIComponent(text)}`;
   };
 
   const sendBackgroundAlert = (booking) => {
@@ -168,32 +154,37 @@ export default function BookingModal({
       console.error('Failed to save booking to localStorage', err);
     }
 
-    setConfirmedBooking(newBooking);
-    setIsSubmitted(true);
     if (onBookingSuccess) onBookingSuccess(newBooking);
 
     // Fire background notification if configured
     sendBackgroundAlert(newBooking);
-  };
 
-  const handleResetAndClose = () => {
-    setIsSubmitted(false);
-    setConfirmedBooking(null);
+    // Construct WhatsApp message and direct link
+    const waUrl = getWhatsAppUrl(SPA_LINES[0].waNumber || '919945264342', newBooking);
+
+    // Reset inputs and close modal so user does not lag on return
     setName('');
     setPhone('');
     setNotes('');
-    setCopied(false);
     onClose();
+
+    // Directly open WhatsApp with prefilled message
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = waUrl;
+    } else {
+      const win = window.open(waUrl, '_blank');
+      if (!win) {
+        window.location.href = waUrl;
+      }
+    }
   };
 
-  const handleCopyBookingDetails = () => {
-    if (!confirmedBooking) return;
-    const text = `BLISS SPA BOOKING: ${confirmedBooking.service} on ${confirmedBooking.date} at ${confirmedBooking.time}. Ref: ${confirmedBooking.id}. Guest: ${confirmedBooking.name} (${confirmedBooking.phone}). Reception: 099452 64342 / 080 9526 6198. Pay: ₹0 Advance.`;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    }
+  const handleResetAndClose = () => {
+    setName('');
+    setPhone('');
+    setNotes('');
+    onClose();
   };
 
   const serviceDropdownOptions = [
@@ -234,248 +225,145 @@ export default function BookingModal({
           <X className="w-5 h-5" />
         </button>
 
-        {!isSubmitted ? (
-          <div>
-            {/* Header: Short, Clear, High-Contrast */}
-            <div className="mb-4 pr-8">
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#dfc282] uppercase tracking-wider mb-1">
-                <Sparkles className="w-3.5 h-3.5" />
-                Reserve Suite
-              </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
-                Book Your Therapy
-              </h3>
-              <p className="text-xs text-[#dfc282] font-medium mt-1 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block shadow-[0_0_6px_#34d399]" />
-                <span>₹0 advance • Pay at spa after treatment</span>
-              </p>
+        <div>
+          {/* Header: Short, Clear, High-Contrast */}
+          <div className="mb-4 pr-8">
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#dfc282] uppercase tracking-wider mb-1">
+              <Sparkles className="w-3.5 h-3.5" />
+              Reserve Suite
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+              Book Your Therapy
+            </h3>
+            <p className="text-xs text-[#dfc282] font-medium mt-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block shadow-[0_0_6px_#34d399]" />
+              <span>₹0 advance • Pay at spa after treatment</span>
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-3.5">
+            {/* Select Service */}
+            <div>
+              <CustomDropdown
+                label="Select Treatment"
+                value={service}
+                onChange={setService}
+                options={serviceDropdownOptions}
+                placeholder="Select a treatment"
+                icon={Sparkles}
+                required
+              />
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-3.5">
-              {/* Select Service */}
+            {/* Date & Time Grid */}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-semibold text-slate-200 mb-1 flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-[#dfc282]" />
+                  <span>Date</span>
+                </label>
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                  className="w-full min-h-[44px] bg-[#14221c] border border-white/20 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-[#dfc282] focus:ring-1 focus:ring-[#dfc282] transition-colors"
+                />
+              </div>
+
               <div>
                 <CustomDropdown
-                  label="Select Treatment"
-                  value={service}
-                  onChange={setService}
-                  options={serviceDropdownOptions}
-                  placeholder="Select a treatment"
-                  icon={Sparkles}
+                  label="Preferred Time"
+                  value={time}
+                  onChange={setTime}
+                  options={timeDropdownOptions}
+                  placeholder="Select time"
+                  icon={Clock}
                   required
                 />
               </div>
+            </div>
 
-              {/* Date & Time Grid */}
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-200 mb-1 flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-[#dfc282]" />
-                    <span>Date</span>
-                  </label>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    required
-                    className="w-full min-h-[44px] bg-[#14221c] border border-white/20 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-[#dfc282] focus:ring-1 focus:ring-[#dfc282] transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <CustomDropdown
-                    label="Preferred Time"
-                    value={time}
-                    onChange={setTime}
-                    options={timeDropdownOptions}
-                    placeholder="Select time"
-                    icon={Clock}
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* Guest Name & Phone */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-200 mb-1 flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-[#dfc282]" />
-                    <span>Your Name</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    autoComplete="name"
-                    autoCapitalize="words"
-                    className="w-full min-h-[44px] bg-[#14221c] border border-white/20 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] focus:ring-1 focus:ring-[#dfc282] transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-200 mb-1 flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-[#dfc282]" />
-                    <span>Phone Number</span>
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="10-digit mobile number"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                    inputMode="tel"
-                    autoComplete="tel"
-                    className="w-full min-h-[44px] bg-[#14221c] border border-white/20 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] focus:ring-1 focus:ring-[#dfc282] transition-colors font-mono"
-                  />
-                </div>
-              </div>
-
-              {/* Focus Area / Notes */}
+            {/* Guest Name & Phone */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-slate-200 mb-1">
-                  Focus Area / Preferences <span className="text-slate-400 font-normal">(Optional)</span>
+                <label className="block text-xs font-semibold text-slate-200 mb-1 flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-[#dfc282]" />
+                  <span>Your Name</span>
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. Neck stiffness, medium pressure, female therapist"
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="w-full min-h-[42px] bg-[#14221c] border border-white/20 rounded-xl px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] focus:ring-1 focus:ring-[#dfc282] transition-colors"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  autoComplete="name"
+                  autoCapitalize="words"
+                  className="w-full min-h-[44px] bg-[#14221c] border border-white/20 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] focus:ring-1 focus:ring-[#dfc282] transition-colors"
                 />
               </div>
 
-              {/* Trust & Guarantee Banner */}
-              <div className="bg-[#14221c] border border-[#cfa559]/30 rounded-xl p-3 flex items-center justify-between gap-2 text-xs">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span className="text-white font-medium">100% Free Reservation</span>
-                </div>
-                <span className="text-[#dfc282] font-semibold text-[11px] bg-[#cfa559]/15 px-2 py-0.5 rounded-full border border-[#cfa559]/30">
-                  Pay After Therapy
-                </span>
-              </div>
-
-              {/* Submit CTA */}
-              <button
-                type="submit"
-                className="w-full min-h-[48px] py-3 px-5 rounded-full bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-sm tracking-wide shadow-[0_4px_16px_rgba(207,165,89,0.3)] hover:brightness-105 active:scale-98 transition flex items-center justify-center gap-2 cursor-pointer mt-1"
-              >
-                <span>Confirm Reservation • ₹0 Advance</span>
-                <Sparkles className="w-4 h-4 text-[#060f0a] shrink-0" />
-              </button>
-
-              {/* Reception Assistance Line */}
-              <p className="text-[11px] text-center text-slate-300 pt-0.5">
-                Questions? Call Reception:{' '}
-                <a href="tel:09945264342" className="text-[#dfc282] font-bold hover:underline">
-                  099452 64342
-                </a>
-              </p>
-            </form>
-          </div>
-        ) : (
-          /* VIP Confirmation Screen - Clean, High Contrast, User-Friendly */
-          <div className="text-center pt-2">
-            <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3 border border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-              <CheckCircle2 className="w-7 h-7" />
-            </div>
-
-            <h3 className="font-serif text-2xl font-bold text-white mb-1">
-              Booking Reserved!
-            </h3>
-            <p className="text-xs text-slate-200 max-w-sm mx-auto mb-4">
-              Thank you, <strong className="text-white">{confirmedBooking?.name}</strong>. Your private suite is scheduled.
-            </p>
-
-            {/* High-Contrast VIP Summary Card */}
-            <div className="bg-[#14221c] border border-[#cfa559]/30 rounded-2xl p-4 text-left mb-4 text-xs space-y-2.5 shadow-xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                <span className="text-slate-300 font-medium">Treatment:</span>
-                <span className="text-white font-bold text-sm text-right">{confirmedBooking?.service}</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                <span className="text-slate-300 font-medium">Date &amp; Time:</span>
-                <span className="text-[#dfc282] font-semibold">{confirmedBooking?.date} at {confirmedBooking?.time}</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                <span className="text-slate-300 font-medium">Guest:</span>
-                <span className="text-white font-medium">{confirmedBooking?.name} ({confirmedBooking?.phone})</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                <span className="text-slate-300 font-medium">Amount Due:</span>
-                <span className="text-emerald-400 font-bold font-mono text-sm">{confirmedBooking?.price} (Pay at Spa)</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-300 font-medium">Reference Code:</span>
-                <span className="text-[#dfc282] font-mono font-bold tracking-wider">{confirmedBooking?.id}</span>
+              <div>
+                <label className="block text-xs font-semibold text-slate-200 mb-1 flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-[#dfc282]" />
+                  <span>Phone Number</span>
+                </label>
+                <input
+                  type="tel"
+                  placeholder="10-digit mobile number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                  inputMode="tel"
+                  autoComplete="tel"
+                  className="w-full min-h-[44px] bg-[#14221c] border border-white/20 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] focus:ring-1 focus:ring-[#dfc282] transition-colors font-mono"
+                />
               </div>
             </div>
 
-            {/* Primary Action: 1-Tap Official WhatsApp Notification */}
-            <div className="space-y-2 mb-3">
-              <a
-                href={getWhatsAppUrl('919945264342')}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full min-h-[46px] py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-black font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(37,211,102,0.35)] active:scale-95 transition cursor-pointer"
-              >
-                <WhatsAppIcon className="w-4 h-4 shrink-0 fill-current" />
-                <span>Send Booking via WhatsApp</span>
-              </a>
+            {/* Focus Area / Notes */}
+            <div>
+              <label className="block text-xs font-semibold text-slate-200 mb-1">
+                Focus Area / Preferences <span className="text-slate-400 font-normal">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. Neck stiffness, medium pressure, female therapist"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className="w-full min-h-[42px] bg-[#14221c] border border-white/20 rounded-xl px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#dfc282] focus:ring-1 focus:ring-[#dfc282] transition-colors"
+              />
+            </div>
 
-              {/* Secondary Actions Grid */}
-              <div className="grid grid-cols-2 gap-2">
-                <a
-                  href="tel:09945264342"
-                  className="min-h-[42px] py-2 px-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-medium text-xs flex items-center justify-center gap-1.5 transition active:scale-95"
-                >
-                  <Phone className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
-                  <span>Call Reception</span>
-                </a>
-
-                <button
-                  type="button"
-                  onClick={() => handleSendSMS('9945264342')}
-                  className="min-h-[42px] py-2 px-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-medium text-xs flex items-center justify-center gap-1.5 transition active:scale-95 cursor-pointer"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-[#dfc282] shrink-0" />
-                  <span>Send Free SMS</span>
-                </button>
+            {/* Trust & Guarantee Banner */}
+            <div className="bg-[#14221c] border border-[#cfa559]/30 rounded-xl p-3 flex items-center justify-between gap-2 text-xs">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span className="text-white font-medium">100% Free Reservation</span>
               </div>
+              <span className="text-[#dfc282] font-semibold text-[11px] bg-[#cfa559]/15 px-2 py-0.5 rounded-full border border-[#cfa559]/30">
+                Pay After Therapy
+              </span>
             </div>
 
-            {/* Quick Copy Link */}
-            <div className="flex items-center justify-center mb-3">
-              <button
-                type="button"
-                onClick={handleCopyBookingDetails}
-                className="inline-flex items-center gap-1 text-[11px] text-[#dfc282] hover:text-white transition font-medium px-3 py-1 rounded-lg hover:bg-white/5 cursor-pointer"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400 font-bold">Booking Details Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>Copy Booking Details</span>
-                  </>
-                )}
-              </button>
-            </div>
-
-            {/* Done / Return Button */}
+            {/* Submit CTA - Direct WhatsApp Booking */}
             <button
-              type="button"
-              onClick={handleResetAndClose}
-              className="w-full min-h-[44px] py-2.5 px-4 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white font-semibold text-xs active:scale-98 transition cursor-pointer"
+              type="submit"
+              className="w-full min-h-[48px] py-3 px-5 rounded-full bg-gradient-to-r from-[#dfc282] via-[#cfa559] to-[#b38838] text-[#060f0a] font-bold text-sm tracking-wide shadow-[0_4px_16px_rgba(207,165,89,0.3)] hover:brightness-105 active:scale-98 transition flex items-center justify-center gap-2 cursor-pointer mt-1"
             >
-              Done / Return to Spa
+              <WhatsAppIcon className="w-4 h-4 shrink-0 fill-[#060f0a]" />
+              <span>Confirm on WhatsApp • ₹0 Advance</span>
             </button>
-          </div>
-        )}
+
+            {/* Reception Assistance Line */}
+            <p className="text-[11px] text-center text-slate-300 pt-0.5">
+              Questions? Call Reception:{' '}
+              <a href="tel:09945264342" className="text-[#dfc282] font-bold hover:underline">
+                099452 64342
+              </a>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );
